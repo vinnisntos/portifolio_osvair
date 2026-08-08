@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osvair dos Santos — Transporte Executivo</title>
+<meta name="description" content="Transporte executivo e particular com Osvair dos Santos. Transfers para aeroportos, viagens corporativas, eventos e viagens intermunicipais em Volkswagen Jetta 2019 250 TSI.">
+
+
+<script src="https://cdn.tailwindcss.com"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          asphalt: '#0b0c0e',
+          graphite: '#16181b',
+          graphite2: '#1f2226',
+          steel: '#38516e',
+          steellight: '#7f97b3',
+          silver: '#b8c0c8',
+          ivory: '#f2f3f5',
+          mist: '#9aa2ab',
+        },
+        fontFamily: {
+          sans: ['"Segoe UI"', 'ui-sans-serif', 'system-ui', '-apple-system', '"Helvetica Neue"', 'Arial', 'sans-serif'],
+          mono: ['"SFMono-Regular"', 'Consolas', '"Roboto Mono"', 'Menlo', 'monospace'],
+        },
+        letterSpacing: {
+          widest2: '0.28em',
+        },
+      },
+    },
+  };
+</script>
+
+<style>
+  /* Respeita usuários que preferem menos movimento */
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  html { scroll-behavior: smooth; }
+  body { background-color: #0b0c0e; }
+
+  /* Feixe de luz lento cruzando o hero — referência a farol na estrada à noite */
+  @keyframes headlight-sweep {
+    0%   { transform: translateX(-30%) rotate(6deg); opacity: 0; }
+    10%  { opacity: .5; }
+    50%  { opacity: .18; }
+    90%  { opacity: .5; }
+    100% { transform: translateX(130%) rotate(6deg); opacity: 0; }
+  }
+  .sweep {
+    animation: headlight-sweep 9s ease-in-out infinite;
+  }
+
+  /* Revelação suave ao rolar a página */
+  .reveal {
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .7s ease, transform .7s ease;
+  }
+  .reveal.in {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Borda perfurada do "cartão de embarque" na seção de contato */
+  .stub-perforation {
+    background-image: radial-gradient(circle, rgba(184,192,200,0.35) 1.5px, transparent 1.6px);
+    background-size: 12px 12px;
+    background-position: center;
+  }
+
+  ::selection { background: #38516e; color: #f2f3f5; }
+
+  /* Foco visível para navegação por teclado */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #7f97b3;
+    outline-offset: 3px;
+  }
+</style>
+</head>
+
+<body class="bg-asphalt text-ivory font-sans antialiased">
+
+<!-- =============================== HERO =============================== -->
+<header class="relative overflow-hidden border-b border-white/10">
+  <!-- Vinheta de fundo: asfalto ao entardecer -->
+  <div class="absolute inset-0 bg-gradient-to-b from-[#101215] via-[#0b0c0e] to-[#0b0c0e]"></div>
+  <div class="sweep absolute top-0 left-0 h-full w-1/3 bg-gradient-to-r from-transparent via-steellight/10 to-transparent pointer-events-none"></div>
+
+  <div class="relative mx-auto max-w-2xl px-6 pt-14 pb-16 sm:pt-20 sm:pb-24">
+    <div class="flex items-center gap-3 text-mist">
+      <span class="h-px w-8 bg-silver/40"></span>
+      <span class="font-mono text-[11px] tracking-widest2 uppercase">Transporte executivo &amp; particular</span>
+    </div>
+
+    <div class="mt-10 flex flex-col sm:flex-row sm:items-end gap-8">
+      <!-- Foto do motorista: coloque "foto-osvair.jpg" nesta mesma pasta -->
+      <div class="relative shrink-0 h-24 w-24 sm:h-28 sm:w-28 rounded-full border border-silver/30 bg-graphite overflow-hidden flex items-center justify-center">
+        <img src="foto-osvair.png" alt="Osvair dos Santos" class="h-full w-full object-cover"
+             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+        <span class="hidden absolute inset-0 items-center justify-center font-mono text-2xl tracking-widest text-silver">OS</span>
+      </div>
+
+      <div>
+        <h1 class="text-4xl sm:text-5xl leading-[1.05] tracking-tight text-balance">
+          Osvair<br class="sm:hidden"> dos Santos
+        </h1>
+        <p class="mt-3 text-mist text-base sm:text-lg max-w-md">
+          Pontualidade que se cumprimenta. Conforto que se sente.
+          Discrição em que se confia.
+        </p>
+      </div>
+    </div>
+
+    <div class="mt-10 flex flex-col sm:flex-row gap-3">
+      <a href="https://wa.me/5515988164662?text=Ol%C3%A1%2C%20Osvair!%20Gostaria%20de%20agendar%20uma%20corrida%20%2F%20solicitar%20um%20or%C3%A7amento."
+         target="_blank" rel="noopener"
+         class="inline-flex items-center justify-center gap-2 rounded-sm bg-steel px-6 py-3.5 text-sm font-medium tracking-wide text-ivory hover:bg-steellight hover:text-asphalt transition-colors">
+        <i data-lucide="message-circle" class="h-4 w-4"></i>
+        Agendar corrida no WhatsApp
+      </a>
+      <a href="tel:+5515988164662"
+         class="inline-flex items-center justify-center gap-2 rounded-sm border border-silver/30 px-6 py-3.5 text-sm font-medium tracking-wide text-ivory hover:border-silver hover:bg-white/5 transition-colors">
+        <i data-lucide="phone" class="h-4 w-4"></i>
+        Ligar agora
+      </a>
+    </div>
+  </div>
+</header>
+
+<main class="mx-auto max-w-2xl px-6">
+
+  <!-- =============================== SOBRE =============================== -->
+  <section class="reveal py-14 sm:py-20 border-b border-white/10">
+    <div class="flex items-center gap-3 text-mist mb-6">
+      <i data-lucide="badge-check" class="h-4 w-4 text-steellight"></i>
+      <span class="font-mono text-[11px] tracking-widest2 uppercase">O profissional</span>
+    </div>
+    <p class="text-lg sm:text-xl leading-relaxed text-ivory/90 text-balance">
+      Há mais de duas décadas na estrada, aos 43 anos Osvair construiu uma reputação
+      baseada em três princípios: pontualidade rigorosa, direção segura e discrição
+      total com cada passageiro.
+    </p>
+    <p class="mt-5 text-mist leading-relaxed max-w-prose">
+      O atendimento é exclusivo — sem divisão de corrida, sem pressa. Cada trajeto é
+      planejado com antecedência, cada passageiro recebido com atenção pessoal, do
+      primeiro contato até o desembarque.
+    </p>
+  </section>
+
+  <!-- =============================== VEÍCULO =============================== -->
+  <section class="reveal py-14 sm:py-20 border-b border-white/10">
+    <div class="flex items-center gap-3 text-mist mb-6">
+      <i data-lucide="car" class="h-4 w-4 text-steellight"></i>
+      <span class="font-mono text-[11px] tracking-widest2 uppercase">O veículo</span>
+    </div>
+
+    <h2 class="text-2xl sm:text-3xl tracking-tight text-balance">
+      Volkswagen Jetta <span class="text-mist">2019 · 250 TSI</span>
+    </h2>
+    <p class="mt-3 text-mist max-w-prose leading-relaxed">
+      Sedan médio, elegante e silencioso — rodagem macia mesmo em longos trechos de
+      rodovia, com espaço e conforto pensados para viagens de negócios.
+    </p>
+
+    <!-- Ficha técnica em estilo "painel de instrumentos" -->
+    <dl class="mt-8 grid grid-cols-2 gap-px bg-white/10 rounded-sm overflow-hidden">
+      <div class="bg-graphite px-4 py-4">
+        <dt class="font-mono text-[10px] tracking-widest2 uppercase text-mist">Categoria</dt>
+        <dd class="mt-1 text-sm text-ivory">Sedan executivo</dd>
+      </div>
+      <div class="bg-graphite px-4 py-4">
+        <dt class="font-mono text-[10px] tracking-widest2 uppercase text-mist">Câmbio</dt>
+        <dd class="mt-1 text-sm text-ivory">Automático</dd>
+      </div>
+      <div class="bg-graphite px-4 py-4">
+        <dt class="font-mono text-[10px] tracking-widest2 uppercase text-mist">Climatização</dt>
+        <dd class="mt-1 text-sm text-ivory">Ar-condicionado dual zone</dd>
+      </div>
+      <div class="bg-graphite px-4 py-4">
+        <dt class="font-mono text-[10px] tracking-widest2 uppercase text-mist">Porta-malas</dt>
+        <dd class="mt-1 text-sm text-ivory">Amplo, para bagagens de viagem</dd>
+      </div>
+    </dl>
+
+    <!-- Comodidades a bordo -->
+    <ul class="mt-6 grid grid-cols-2 sm:grid-cols-4 gap-4 text-center">
+      <li class="flex flex-col items-center gap-2 py-3">
+        <i data-lucide="sparkles" class="h-5 w-5 text-steellight"></i>
+        <span class="text-xs text-mist">Higienização<br>a cada corrida</span>
+      </li>
+      <li class="flex flex-col items-center gap-2 py-3">
+        <i data-lucide="cup-soda" class="h-5 w-5 text-steellight"></i>
+        <span class="text-xs text-mist">Água<br>a bordo</span>
+      </li>
+      <li class="flex flex-col items-center gap-2 py-3">
+        <i data-lucide="plug-zap" class="h-5 w-5 text-steellight"></i>
+        <span class="text-xs text-mist">Carregadores<br>de celular</span>
+      </li>
+      <li class="flex flex-col items-center gap-2 py-3">
+        <i data-lucide="armchair" class="h-5 w-5 text-steellight"></i>
+        <span class="text-xs text-mist">Bancos<br>confortáveis</span>
+      </li>
+    </ul>
+  </section>
+
+  <!-- =============================== SERVIÇOS =============================== -->
+  <section class="reveal py-14 sm:py-20 border-b border-white/10">
+    <div class="flex items-center gap-3 text-mist mb-6">
+      <i data-lucide="route" class="h-4 w-4 text-steellight"></i>
+      <span class="font-mono text-[11px] tracking-widest2 uppercase">Serviços</span>
+    </div>
+
+    <div class="grid sm:grid-cols-2 gap-px bg-white/10 rounded-sm overflow-hidden">
+      <div class="bg-graphite p-6 hover:bg-graphite2 transition-colors">
+        <i data-lucide="plane" class="h-5 w-5 text-steellight"></i>
+        <h3 class="mt-4 text-base font-medium">Transfers para aeroportos</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">Guarulhos (GRU), Viracopos (VCP) e Congonhas (CGH), com margem de horário calculada para cada voo.</p>
+      </div>
+      <div class="bg-graphite p-6 hover:bg-graphite2 transition-colors">
+        <i data-lucide="briefcase" class="h-5 w-5 text-steellight"></i>
+        <h3 class="mt-4 text-base font-medium">Transporte corporativo</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">Reuniões, compromissos e deslocamentos executivos com discrição e pontualidade.</p>
+      </div>
+      <div class="bg-graphite p-6 hover:bg-graphite2 transition-colors">
+        <i data-lucide="calendar-days" class="h-5 w-5 text-steellight"></i>
+        <h3 class="mt-4 text-base font-medium">Eventos</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">Casamentos, formaturas e compromissos sociais com trajeto e horário combinados com antecedência.</p>
+      </div>
+      <div class="bg-graphite p-6 hover:bg-graphite2 transition-colors">
+        <i data-lucide="map" class="h-5 w-5 text-steellight"></i>
+        <h3 class="mt-4 text-base font-medium">Viagens intermunicipais e agendadas</h3>
+        <p class="mt-2 text-sm text-mist leading-relaxed">Trajetos entre cidades e viagens marcadas com data e hora fixas, sem imprevistos.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- =============================== CONTATO =============================== -->
+  <section class="reveal py-14 sm:py-20">
+    <div class="flex items-center gap-3 text-mist mb-6">
+      <i data-lucide="ticket" class="h-4 w-4 text-steellight"></i>
+      <span class="font-mono text-[11px] tracking-widest2 uppercase">Contato &amp; embarque</span>
+    </div>
+
+    <!-- "Cartão de embarque" — motivo visual ligado ao próprio serviço de transfer -->
+    <div class="rounded-sm border border-silver/20 overflow-hidden">
+      <div class="bg-graphite px-6 py-6 sm:px-8 sm:py-8">
+        <div class="flex items-baseline justify-between">
+          <span class="font-mono text-[10px] tracking-widest2 uppercase text-mist">Passageiro</span>
+          <span class="font-mono text-[10px] tracking-widest2 uppercase text-mist">Osvair · Transporte Executivo</span>
+        </div>
+        <h3 class="mt-4 text-2xl tracking-tight">Reserve seu embarque</h3>
+        <p class="mt-2 text-sm text-mist max-w-prose">
+          Atendendo Sorocaba e região, com trajetos para a capital paulista e demais
+          cidades do estado. Responda o horário do voo ou compromisso para
+          confirmarmos a janela de embarque.
+        </p>
+
+        <div class="mt-6 grid gap-3">
+          <a href="https://wa.me/5515988164662?text=Ol%C3%A1%2C%20Osvair!%20Gostaria%20de%20agendar%20uma%20corrida%20%2F%20solicitar%20um%20or%C3%A7amento."
+             target="_blank" rel="noopener"
+             class="inline-flex items-center justify-center gap-2 rounded-sm bg-steel px-6 py-3.5 text-sm font-medium tracking-wide text-ivory hover:bg-steellight hover:text-asphalt transition-colors">
+            <i data-lucide="message-circle" class="h-4 w-4"></i>
+            Falar no WhatsApp
+          </a>
+          <div class="grid grid-cols-2 gap-3">
+            <a href="tel:+5515988164662"
+               class="inline-flex items-center justify-center gap-2 rounded-sm border border-silver/30 px-4 py-3 text-sm text-ivory hover:border-silver hover:bg-white/5 transition-colors">
+              <i data-lucide="phone" class="h-4 w-4"></i>
+              Ligar
+            </a>
+            <a href="mailto:osvairsantos27@gmail.com"
+               class="inline-flex items-center justify-center gap-2 rounded-sm border border-silver/30 px-4 py-3 text-sm text-ivory hover:border-silver hover:bg-white/5 transition-colors">
+              <i data-lucide="mail" class="h-4 w-4"></i>
+              E-mail
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Linha perfurada do canhoto -->
+      <div class="h-3 stub-perforation bg-asphalt"></div>
+
+      <!-- Canhoto: formas de pagamento -->
+      <div class="bg-graphite px-6 py-6 sm:px-8 sm:py-6">
+        <div class="flex items-center justify-between">
+          <span class="font-mono text-[10px] tracking-widest2 uppercase text-mist">Pagamento aceito</span>
+          <i data-lucide="credit-card" class="h-4 w-4 text-steellight"></i>
+        </div>
+        <div class="mt-3 flex flex-wrap gap-2">
+          <span class="font-mono text-xs tracking-wide border border-silver/25 rounded-sm px-3 py-1.5 text-ivory/90">Pix</span>
+          <span class="font-mono text-xs tracking-wide border border-silver/25 rounded-sm px-3 py-1.5 text-ivory/90">Cartão de crédito</span>
+          <span class="font-mono text-xs tracking-wide border border-silver/25 rounded-sm px-3 py-1.5 text-ivory/90">Cartão de débito</span>
+        </div>
+        <p class="mt-4 font-mono text-xs text-mist">
+          Chave Pix combinada diretamente no fechamento da corrida.
+        </p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- =============================== RODAPÉ =============================== -->
+<footer class="border-t border-white/10">
+  <div class="mx-auto max-w-2xl px-6 py-8 flex flex-col sm:flex-row items-center justify-between gap-3">
+    <p class="font-mono text-[11px] tracking-widest2 uppercase text-mist">
+      Osvair dos Santos — Transporte Executivo
+    </p>
+    <p class="text-xs text-mist/70">© 2026 · Todos os direitos reservados</p>
+  </div>
+</footer>
+
+<script>
+  // Ícones Lucide
+  lucide.createIcons();
+
+  // Revelação suave das seções ao rolar
+  const revealEls = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.15 });
+  revealEls.forEach((el) => observer.observe(el));
+</script>
+
+</body>
+</html>
