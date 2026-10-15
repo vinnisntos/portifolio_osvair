@@ -14,6 +14,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/osvair.jpg">
 <script>document.documentElement.classList.add('js')</script>
+<script type="importmap">
+  { "imports": {
+      "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
+      "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.170.0/examples/jsm/"
+  } }
+</script>
 
 <style>
   /* Direção: high-end-visual-design, arquétipo "Ethereal Glass" (o mesmo da agenda.osvairsantos.com.br).
@@ -157,7 +163,29 @@
   /* o carro */
   .car-photo { grid-column: span 7; }
   .car-photo .core { aspect-ratio: 4 / 3; position: relative; }
-  .car-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 55%; }
+  .car-photo .car-img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 60%; }
+  .view-toggle { position: absolute; top: 1rem; left: 1rem; z-index: 3; display: inline-flex; gap: 0.25rem; padding: 0.25rem; border-radius: 999px; background: rgba(12, 12, 14, 0.6); border: 1px solid var(--line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .view-toggle button, .car-3d-bar button { min-height: 2.25rem; padding: 0 0.95rem; border-radius: 999px; font-size: 0.8125rem; color: var(--muted); white-space: nowrap; transition: background-color var(--t) var(--spring), color var(--t) var(--spring), transform var(--t) var(--spring); }
+  .view-toggle button:hover, .car-3d-bar button:hover { color: var(--fg); }
+  .view-toggle button:active, .car-3d-bar button:active { transform: scale(0.96); }
+  .view-toggle button[aria-pressed="true"], .car-3d-bar button[aria-pressed="true"] { background: var(--fg); color: #0a0a0b; font-weight: 600; }
+  .car-3d { position: absolute; inset: 0; background: radial-gradient(70% 60% at 50% 35%, rgba(91, 140, 255, 0.12), transparent 70%), #0b0b0e; }
+  .car-3d[hidden] { display: none; }
+  .car-3d-canvas { position: absolute; inset: 0; touch-action: none; }
+  .car-3d-canvas canvas { display: block; width: 100%; height: 100%; cursor: grab; }
+  .car-3d-canvas canvas:active { cursor: grabbing; }
+  .car-3d-status { position: absolute; inset: 0; display: grid; place-items: center; align-content: center; gap: 0.75rem; color: var(--muted); font-size: 0.875rem; pointer-events: none; transition: opacity 400ms var(--spring); }
+  .car-3d-status .bar { width: 10rem; height: 4px; border-radius: 999px; background: rgba(255, 255, 255, 0.1); overflow: hidden; }
+  .car-3d-status .bar i { display: block; height: 100%; width: 0; background: var(--fg); border-radius: inherit; transition: width 200ms linear; }
+  .car-3d.is-ready .car-3d-status { opacity: 0; }
+  .car-3d-bar { position: absolute; left: 0.75rem; right: 0.75rem; bottom: 0.75rem; z-index: 2; display: flex; gap: 0.25rem; align-items: center; padding: 0.25rem; border-radius: 999px; background: rgba(12, 12, 14, 0.6); border: 1px solid var(--line); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); overflow-x: auto; scrollbar-width: none; opacity: 0; transform: translateY(8px); transition: opacity 500ms var(--spring), transform 500ms var(--spring); }
+  .car-3d-bar::-webkit-scrollbar { display: none; }
+  .car-3d.is-ready .car-3d-bar { opacity: 1; transform: none; }
+  .car-3d-bar .sep { flex: none; width: 1px; height: 1.25rem; background: var(--line); margin: 0 0.25rem; }
+  .car-3d-bar .lights { margin-left: auto; }
+  .car-3d-hint { position: absolute; top: 1.25rem; right: 1rem; z-index: 2; font-size: 0.75rem; color: var(--muted); opacity: 0; transition: opacity 600ms var(--spring); pointer-events: none; }
+  .car-3d.is-ready .car-3d-hint { opacity: 1; }
+  @media (max-width: 600px) { .car-3d-hint { display: none; } .car-photo .core { aspect-ratio: 4 / 4.2; } }
   .car-photo figcaption { position: absolute; left: 1rem; bottom: 1rem; right: 1rem; padding: 0.5rem 0.8rem; border-radius: 0.875rem; background: rgba(12, 12, 14, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-size: 0.75rem; color: var(--muted); }
   .car-info { grid-column: span 5; }
   .car-info .core { height: 100%; display: flex; flex-direction: column; gap: 1.5rem; }
@@ -400,9 +428,26 @@
       <h2 class="h2" id="carro-titulo" data-reveal style="--i:1">Silencioso desde <span>a partida.</span></h2>
       <div class="bento">
         <figure class="shell car-photo" data-reveal>
-          <div class="core">
-            <img src="assets/toyota-corolla-sedan-e210-hydrid.jpg" width="1600" height="1090" alt="Toyota Corolla sedã híbrido preto, da mesma geração do carro do Osvair, estacionado" loading="lazy">
-            <figcaption>Corolla sedã híbrido da mesma geração. Foto ilustrativa do modelo, não do carro do Osvair.</figcaption>
+          <div class="core" id="car-stage">
+            <div class="view-toggle" role="group" aria-label="Ver o carro em">
+              <button type="button" data-view="photo" aria-pressed="true">Foto</button>
+              <button type="button" data-view="3d" aria-pressed="false">3D</button>
+            </div>
+            <img class="car-img" src="assets/corolla-altis-hybrid.jpg" width="1920" height="1080" alt="Toyota Corolla Altis Hybrid branco em uma concessionária, visto de frente em três quartos" loading="lazy">
+            <div class="car-3d" id="car-3d" hidden>
+              <div class="car-3d-canvas"></div>
+              <div class="car-3d-status" role="status"><span data-status>Carregando o modelo 3D…</span><span class="bar"><i></i></span></div>
+              <p class="car-3d-hint">Arraste para girar. Toque nos faróis.</p>
+              <div class="car-3d-bar" role="group" aria-label="Ângulos e luzes">
+                <button type="button" data-cam="tres" aria-pressed="true">3/4</button>
+                <button type="button" data-cam="frente" aria-pressed="false">Frente</button>
+                <button type="button" data-cam="lado" aria-pressed="false">Lado</button>
+                <button type="button" data-cam="traseira" aria-pressed="false">Traseira</button>
+                <span class="sep" aria-hidden="true"></span>
+                <button type="button" class="lights" data-lights aria-pressed="false">Faróis</button>
+              </div>
+            </div>
+            <figcaption data-caption>Corolla Altis Hybrid, o mesmo modelo do carro do Osvair. Foto ilustrativa.</figcaption>
           </div>
         </figure>
         <div class="shell car-info" data-reveal style="--i:1">
@@ -517,7 +562,7 @@
       </nav>
     </div>
     <p>© 2026 Osvair dos Santos. Pix, cartão de crédito e débito.</p>
-    <p class="credits">Fotos de lugares e do modelo do carro: <a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla_sedan_E210_hydrid.jpg">“Toyota Corolla sedan E210 hydrid”</a> por Mateusmatsuda, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:SP-280-RODOVIA_CASTELLO_BRANCO_-_panoramio.jpg">“SP-280-Rodovia Castello Branco”</a> por James Martins, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Mapa-rodovia-castelo-branco.jpg">“Mapa-rodovia-castelo-branco”</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rod._Raposo_Tavares,_km_76_-_Alum%C3%ADnio_SP_(5224994086).jpg">“Rod. Raposo Tavares, km 76, Alumínio SP”</a> por Roberto Sabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Aeroporto_de_Guarulhos_em_Julho_de_2026.jpg">“Aeroporto de Guarulhos em Julho de 2026”</a> por Boaventuravinicius, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Fachada_do_Aeroporto_Internacional_de_Viracopos.18.6.2025.jpg">“Fachada do Aeroporto Internacional de Viracopos”</a> por Mtvdanilo, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Embarque_em_avi%C3%A3o_no_Aeroporto_de_Congonhas,_S%C3%A3o_Paulo,_novembro_de_2024_(1).jpg">“Embarque em avião no Aeroporto de Congonhas”</a> por Fronteira, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rio_Sorocaba_(cropped).jpg">“Rio Sorocaba”</a> por RobSabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>. Todas via Wikimedia Commons.</p>
+    <p class="credits">Fotos de lugares e do modelo do carro: <a href="https://commons.wikimedia.org/w/index.php?curid=99929038">“2021 Toyota Corolla Altis Hybrid Premium Safety”</a> por Chanokchon, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla_sedan_E210_hydrid.jpg">“Toyota Corolla sedan E210 hydrid”</a> por Mateusmatsuda, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:SP-280-RODOVIA_CASTELLO_BRANCO_-_panoramio.jpg">“SP-280-Rodovia Castello Branco”</a> por James Martins, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Mapa-rodovia-castelo-branco.jpg">“Mapa-rodovia-castelo-branco”</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rod._Raposo_Tavares,_km_76_-_Alum%C3%ADnio_SP_(5224994086).jpg">“Rod. Raposo Tavares, km 76, Alumínio SP”</a> por Roberto Sabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Aeroporto_de_Guarulhos_em_Julho_de_2026.jpg">“Aeroporto de Guarulhos em Julho de 2026”</a> por Boaventuravinicius, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Fachada_do_Aeroporto_Internacional_de_Viracopos.18.6.2025.jpg">“Fachada do Aeroporto Internacional de Viracopos”</a> por Mtvdanilo, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Embarque_em_avi%C3%A3o_no_Aeroporto_de_Congonhas,_S%C3%A3o_Paulo,_novembro_de_2024_(1).jpg">“Embarque em avião no Aeroporto de Congonhas”</a> por Fronteira, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rio_Sorocaba_(cropped).jpg">“Rio Sorocaba”</a> por RobSabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>. Todas via Wikimedia Commons. Modelo 3D baseado em <a href="https://sketchfab.com/3d-models/2023-toyota-corolla-hybrid-cd2f6b34664442ad906a40bd00136881">“2023 Toyota Corolla Hybrid”</a> por <a href="https://sketchfab.com/tonielpro520">tonielpro520</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, via Sketchfab.</p>
   </footer>
 </div>
 
@@ -597,6 +642,58 @@
         if (d) { const n = tabs[(i + d + tabs.length) % tabs.length]; select(n); n.focus(); }
       });
     });
+  })();
+
+  // O carro: troca entre a foto e o mostruário 3D (o 3D só carrega quando pedido)
+  (() => {
+    const stageEl = document.getElementById('car-stage');
+    const img = stageEl.querySelector('.car-img');
+    const box = document.getElementById('car-3d');
+    const caption = stageEl.querySelector('[data-caption]');
+    const status = box.querySelector('[data-status]');
+    const bar = box.querySelector('.bar i');
+    const views = [...stageEl.querySelectorAll('[data-view]')];
+    const cams = [...box.querySelectorAll('[data-cam]')];
+    const lightsBtn = box.querySelector('[data-lights]');
+    const captions = {
+      photo: 'Corolla Altis Hybrid, o mesmo modelo do carro do Osvair. Foto ilustrativa.',
+      '3d': 'Modelo 3D ilustrativo do Corolla Hybrid, não do carro do Osvair.',
+    };
+    let viewer = null;
+    let loading = false;
+    const fail = () => {
+      status.textContent = 'Não foi possível abrir o 3D neste aparelho.';
+      loading = false;
+      setTimeout(() => show('photo'), 1800);
+    };
+    const show = async (view) => {
+      views.forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.view === view)));
+      img.hidden = view !== 'photo';
+      box.hidden = view !== '3d';
+      caption.textContent = captions[view];
+      if (view !== '3d' || viewer || loading) return;
+      loading = true;
+      try {
+        const { mount } = await import('./assets/car3d.js');
+        viewer = await mount(box, {
+          url: 'assets/corolla.glb',
+          onProgress: (pr) => { bar.style.width = Math.round(pr * 100) + '%'; },
+          onReady: () => box.classList.add('is-ready'),
+          onError: fail,
+        });
+        loading = false;
+      } catch (err) {
+        fail();
+      }
+    };
+    views.forEach((b) => b.addEventListener('click', () => show(b.dataset.view)));
+    cams.forEach((b) => b.addEventListener('click', () => {
+      if (!viewer) return;
+      cams.forEach((x) => x.setAttribute('aria-pressed', String(x === b)));
+      viewer.goTo(b.dataset.cam);
+    }));
+    lightsBtn.addEventListener('click', () => viewer && viewer.setLights(!viewer.lightsOn));
+    box.addEventListener('car3d:lights', (e) => lightsBtn.setAttribute('aria-pressed', String(e.detail)));
   })();
 
   // Reserva: monta a mensagem do WhatsApp com nome e destino

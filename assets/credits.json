@@ -180,5 +180,29 @@
     "credit": "\"Rio Sorocaba (cropped)\" by RobSabino, CC BY 2.0, via Wikimedia Commons",
     "notes": [],
     "saved": "2026-10-15T19:53:38.331Z"
+  },
+  {
+    "file": "assets/corolla-altis-hybrid.jpg",
+    "media": "image",
+    "ref": "openverse:9e779741-cfa0-4307-b81b-d7b4494498ce",
+    "title": "2021 Toyota Corolla Altis Hybrid Premium Safety",
+    "creator": "Chanokchon",
+    "creatorUrl": "https://commons.wikimedia.org/wiki/User:Chanokchon",
+    "date": null,
+    "license": "CC BY-SA 4.0",
+    "licenseCode": "by-sa",
+    "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+    "creditRequired": true,
+    "page": "https://commons.wikimedia.org/w/index.php?curid=99929038",
+    "via": "Wikimedia Commons",
+    "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/ee/2021_Toyota_Corolla_Altis_Hybrid_Premium_Safety.jpg/1920px-2021_Toyota_Corolla_Altis_Hybrid_Premium_Safety.jpg",
+    "width": 1920,
+    "height": 1080,
+    "bytes": 295993,
+    "credit": "\"2021 Toyota Corolla Altis Hybrid Premium Safety\" by Chanokchon, CC BY-SA 4.0, via Wikimedia Commons",
+    "notes": [
+      "Share-alike: an altered version (recoloured, combined with other pictures) must be shared under the same licence."
+    ],
+    "saved": "2026-10-15T21:16:04.419Z"
   }
 ]
