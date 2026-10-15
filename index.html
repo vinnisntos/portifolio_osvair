@@ -13,7 +13,17 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/osvair.jpg">
-<script>document.documentElement.classList.add('js')</script>
+<script>
+  document.documentElement.classList.add('js');
+  // Abertura com a porta do carro: só na primeira visita da sessão, sem link direto para seção
+  // e sem pedido de menos movimento no sistema.
+  (() => {
+    let seen = false;
+    try { seen = sessionStorage.getItem('intro-porta') === '1'; } catch (_) {}
+    const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!seen && !reduce && !location.hash) document.documentElement.classList.add('intro-active');
+  })();
+</script>
 <script type="importmap">
   { "imports": {
       "three": "https://cdn.jsdelivr.net/npm/three@0.170.0/build/three.module.js",
@@ -239,6 +249,37 @@
     .display { font-size: 2.75rem; }
   }
 
+  /* ---------- abertura: a porta do carro se abre e revela o site ---------- */
+  .intro { display: none; }
+  .intro-active .intro { display: block; position: fixed; inset: 0; z-index: 100; perspective: 2200px; perspective-origin: 30% 50%; overflow: hidden; }
+  .intro-active body { overflow: hidden; }
+  .intro-active [data-reveal] { opacity: 0 !important; transform: translateY(28px) !important; filter: blur(8px) !important; }
+  .intro .glow { position: absolute; inset: 0; background: radial-gradient(60% 70% at 18% 50%, rgba(255, 196, 128, 0.35), transparent 70%); opacity: 0; transition: opacity 900ms var(--spring); pointer-events: none; }
+  .intro .door { position: absolute; inset: 0; transform-origin: 0% 50%; transform-style: preserve-3d; will-change: transform; transition: transform 1500ms cubic-bezier(0.65, 0, 0.18, 1); }
+  .intro .door svg { position: absolute; inset: 0; width: 100%; height: 100%; display: block; }
+  .intro .shade { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.55) 100%); opacity: 0; transition: opacity 1500ms cubic-bezier(0.65, 0, 0.18, 1); pointer-events: none; }
+  .intro .edge { position: absolute; top: 0; bottom: 0; right: -14px; width: 14px; background: linear-gradient(180deg, #2a2c31, #111215); transform-origin: 0 50%; transform: rotateY(90deg); }
+  .intro .handle { transition: transform 160ms var(--spring); transform-box: fill-box; transform-origin: 50% 0; }
+  .intro .handle-hint { animation: handle-pulse 1.6s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
+  @keyframes handle-pulse { 0%, 100% { opacity: 0; } 50% { opacity: 0.55; } }
+  .intro .intro-ui { position: absolute; left: 50%; bottom: calc(2rem + env(safe-area-inset-bottom)); transform: translateX(-50%); display: flex; gap: 0.5rem; align-items: center; z-index: 2; transition: opacity 300ms var(--spring); }
+  .intro .open-btn { display: inline-flex; align-items: center; gap: 0.6rem; min-height: 3rem; padding: 0 1.4rem; border-radius: 999px; background: rgba(12, 12, 14, 0.72); color: #fff; font-weight: 500; font-size: 0.9375rem; border: 1px solid rgba(255, 255, 255, 0.14); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px); }
+  .intro .skip-btn { min-height: 3rem; padding: 0 1.1rem; border-radius: 999px; color: rgba(255, 255, 255, 0.75); font-size: 0.875rem; background: rgba(12, 12, 14, 0.45); }
+  .intro .skip-btn:hover, .intro .open-btn:hover { color: #fff; background: rgba(12, 12, 14, 0.85); }
+  .intro.is-opening .handle { transform: translateY(6px) rotateX(18deg); }
+  .intro.is-opening .door { transform: rotateY(-68deg) translateZ(0); }
+  .intro.is-opening .shade { opacity: 1; }
+  .intro.is-opening .glow { opacity: 1; }
+  .intro.is-opening .intro-ui { opacity: 0; pointer-events: none; }
+  .intro.is-done { opacity: 0; transition: opacity 500ms var(--spring); pointer-events: none; }
+  .intro .open-btn, .intro .skip-btn { white-space: nowrap; }
+  /* tela em pé: o "slice" mostra só o miolo da porta, então o nome encolhe e a maçaneta entra no quadro */
+  @media (orientation: portrait) {
+    .intro .glass-name { font-size: 44px; letter-spacing: -1px; }
+    .intro .glass-sub { font-size: 19px; }
+    .intro .handle-wrap { transform: translateX(-190px); }
+  }
+
   /* movimento */
   @media (prefers-reduced-motion: no-preference) {
     .js [data-reveal] { opacity: 0; transform: translateY(28px); filter: blur(8px); transition: opacity 800ms var(--spring), transform 900ms var(--spring), filter 800ms var(--spring); transition-delay: calc(var(--i, 0) * 90ms); }
@@ -289,6 +330,65 @@
 </head>
 
 <body>
+<div class="intro" id="intro" role="dialog" aria-label="Abertura do site">
+  <div class="glow"></div>
+  <div class="door">
+    <svg viewBox="0 0 1600 1000" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Porta do Corolla">
+      <defs>
+        <linearGradient id="pd-paint" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#fbfbfa"/><stop offset="0.42" stop-color="#eceeef"/><stop offset="0.6" stop-color="#f6f6f5"/><stop offset="0.82" stop-color="#d7d9dd"/><stop offset="1" stop-color="#a9adb4"/>
+        </linearGradient>
+        <linearGradient id="pd-sheen" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#fff" stop-opacity="0"/><stop offset="0.45" stop-color="#fff" stop-opacity="0.55"/><stop offset="0.55" stop-color="#fff" stop-opacity="0"/>
+        </linearGradient>
+        <linearGradient id="pd-chrome" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#ffffff"/><stop offset="0.45" stop-color="#b8bcc4"/><stop offset="0.55" stop-color="#6e737c"/><stop offset="1" stop-color="#d9dce1"/>
+        </linearGradient>
+        <linearGradient id="pd-tint" x1="0" y1="0" x2="0" y2="1">
+          <stop offset="0" stop-color="#0a0c12" stop-opacity="0.35"/><stop offset="1" stop-color="#05060a" stop-opacity="0.75"/>
+        </linearGradient>
+        <filter id="pd-blur"><feGaussianBlur stdDeviation="10"/></filter>
+        <clipPath id="pd-glass"><path d="M110 372 L110 170 Q118 72 260 62 L1520 50 L1520 372 Z"/></clipPath>
+      </defs>
+      <rect width="1600" height="1000" fill="url(#pd-paint)"/>
+      <!-- vidro com o reflexo da estrada -->
+      <g clip-path="url(#pd-glass)">
+        <image href="assets/sp-280-rodovia-castello-branco-panoramio.jpg" x="-100" y="-120" width="1900" height="1070" preserveAspectRatio="xMidYMid slice" filter="url(#pd-blur)"/>
+        <rect width="1600" height="400" fill="url(#pd-tint)"/>
+        <path d="M520 40 L760 40 L420 400 L180 400 Z" fill="#fff" opacity="0.07"/>
+        <path d="M820 40 L880 40 L540 400 L480 400 Z" fill="#fff" opacity="0.05"/>
+        <text class="glass-name" x="800" y="250" text-anchor="middle" fill="#fff" fill-opacity="0.92" font-family="Geist, system-ui, sans-serif" font-size="74" font-weight="600" letter-spacing="-2">Osvair dos Santos</text>
+        <text class="glass-sub" x="800" y="302" text-anchor="middle" fill="#fff" fill-opacity="0.6" font-family="Geist, system-ui, sans-serif" font-size="28">Transporte executivo em Sorocaba</text>
+      </g>
+      <!-- moldura preta da janela e friso cromado -->
+      <path d="M110 372 L110 170 Q118 72 260 62 L1520 50 L1520 372 Z" fill="none" stroke="#0d0e11" stroke-width="26" stroke-linejoin="round"/>
+      <rect x="96" y="380" width="1440" height="14" rx="7" fill="url(#pd-chrome)"/>
+      <!-- vinco da lateral -->
+      <path d="M0 548 C 520 528 1060 520 1600 512" fill="none" stroke="#ffffff" stroke-width="5"/>
+      <path d="M0 554 C 520 534 1060 526 1600 518" fill="none" stroke="#b5b9c0" stroke-width="3"/>
+      <rect y="0" width="1600" height="1000" fill="url(#pd-sheen)" opacity="0.5"/>
+      <!-- frestas da porta -->
+      <rect x="0" y="0" width="8" height="1000" fill="#2a2c31"/>
+      <rect x="1592" y="0" width="8" height="1000" fill="#2a2c31"/>
+      <path d="M0 930 C 600 915 1000 912 1600 905" fill="none" stroke="#8d929a" stroke-width="3"/>
+      <!-- maçaneta -->
+      <g class="handle-wrap">
+      <ellipse cx="1030" cy="470" rx="150" ry="34" fill="#9ea3ab" opacity="0.35"/>
+      <g class="handle">
+        <rect x="895" y="448" width="270" height="44" rx="22" fill="url(#pd-chrome)" stroke="#8c919a" stroke-width="2"/>
+        <rect x="915" y="455" width="230" height="8" rx="4" fill="#fff" opacity="0.8"/>
+      </g>
+      <rect class="handle-hint" x="887" y="440" width="286" height="60" rx="30" fill="none" stroke="#5b8cff" stroke-width="4"/>
+      </g>
+    </svg>
+    <div class="shade"></div>
+    <div class="edge"></div>
+  </div>
+  <div class="intro-ui">
+    <button type="button" class="open-btn" data-open>Abrir a porta</button>
+    <button type="button" class="skip-btn" data-skip>Pular</button>
+  </div>
+</div>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
 <div class="ambient" aria-hidden="true"><img src="assets/sp-280-rodovia-castello-branco-panoramio.jpg" alt=""></div>
 <div class="grain" aria-hidden="true"></div>
@@ -592,6 +692,33 @@
 </div>
 
 <script>
+  // Abertura: a maçaneta é puxada, a porta gira na dobradiça e o site aparece por trás
+  (() => {
+    const root = document.documentElement;
+    const intro = document.getElementById('intro');
+    if (!root.classList.contains('intro-active')) { intro.remove(); return; }
+    let opened = false;
+    const finish = () => {
+      root.classList.remove('intro-active');
+      try { sessionStorage.setItem('intro-porta', '1'); } catch (_) {}
+      intro.classList.add('is-done');
+      setTimeout(() => intro.remove(), 520);
+    };
+    const open = () => {
+      if (opened) return;
+      opened = true;
+      intro.classList.add('is-opening');
+      setTimeout(finish, 1150);
+    };
+    const auto = setTimeout(open, 1400);
+    intro.querySelector('[data-open]').addEventListener('click', open);
+    intro.querySelector('[data-skip]').addEventListener('click', () => { clearTimeout(auto); opened = true; finish(); });
+    intro.addEventListener('click', (e) => { if (!e.target.closest('button')) open(); });
+    addEventListener('wheel', open, { once: true, passive: true });
+    addEventListener('touchmove', open, { once: true, passive: true });
+    addEventListener('keydown', (e) => { if (e.key === 'Escape') { clearTimeout(auto); opened = true; finish(); } else open(); }, { once: true });
+  })();
+
   // Entrada de cada parte ao aparecer; nada fica escondido se o observer falhar
   (() => {
     const els = document.querySelectorAll('[data-reveal]');
