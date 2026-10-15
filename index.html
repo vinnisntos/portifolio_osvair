@@ -260,6 +260,22 @@
   .intro .skip-btn { position: absolute; right: 1.25rem; bottom: calc(1.25rem + env(safe-area-inset-bottom)); z-index: 2; min-height: 2.75rem; padding: 0 1.1rem; border-radius: 999px; color: rgba(255, 255, 255, 0.8); font-size: 0.875rem; background: rgba(12, 12, 14, 0.5); border: 1px solid rgba(255, 255, 255, 0.12); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); white-space: nowrap; transition: background-color 200ms ease, color 200ms ease, opacity 300ms ease; }
   .intro .skip-btn:hover { background: rgba(12, 12, 14, 0.85); color: #fff; }
   .intro.is-leaving video { transform: scale(1.08); opacity: 0; filter: blur(6px); }
+  /* marca Blackline Executivo: linha que se desenha, nome que sobe de trás de uma máscara */
+  .brandmark { position: absolute; z-index: 1; top: 50%; left: 58%; transform: translateY(-50%); color: #f5f5f4; text-align: left; transition: opacity 600ms ease, transform 900ms cubic-bezier(0.32, 0.72, 0, 1); }
+  .bm-line { display: block; width: clamp(9rem, 22vw, 20rem); height: 2px; background: linear-gradient(90deg, rgba(245, 245, 244, 0.9), rgba(91, 140, 255, 0.9)); transform: scaleX(0); transform-origin: left; transition: transform 900ms cubic-bezier(0.65, 0, 0.18, 1); }
+  .bm-name, .bm-sub { overflow: hidden; margin: 0; }
+  .bm-name span, .bm-sub span { display: inline-block; transform: translateY(105%); transition: transform 900ms cubic-bezier(0.32, 0.72, 0, 1); }
+  .bm-name { margin-top: 1rem; font-size: clamp(2.6rem, 1.4rem + 4.4vw, 5.5rem); font-weight: 600; letter-spacing: 0.06em; line-height: 1; text-transform: uppercase; }
+  .bm-sub { margin-top: 0.85rem; font-size: clamp(0.85rem, 0.6rem + 0.75vw, 1.25rem); font-weight: 500; letter-spacing: 0.55em; text-transform: uppercase; color: #c9c9d1; padding-left: 0.2em; }
+  .intro.show-logo .bm-line { transform: scaleX(1); }
+  .intro.show-logo .bm-name span { transform: none; transition-delay: 250ms; }
+  .intro.show-logo .bm-sub span { transform: none; transition-delay: 520ms; }
+  .intro.is-leaving .brandmark { opacity: 0; transform: translateY(-50%) scale(1.04); }
+  @media (orientation: portrait) {
+    .brandmark { top: auto; bottom: calc(18% + env(safe-area-inset-bottom)); left: 50%; transform: translateX(-50%); text-align: center; width: max-content; }
+    .bm-line { margin: 0 auto; transform-origin: center; }
+    .intro.is-leaving .brandmark { transform: translateX(-50%) scale(1.04); }
+  }
   .intro.is-leaving .skip-btn { opacity: 0; }
   .intro.is-done { opacity: 0; transition: opacity 400ms ease; pointer-events: none; }
 
@@ -315,6 +331,11 @@
 <body>
 <div class="intro" id="intro" role="dialog" aria-label="Abertura do site">
   <video id="intro-video" muted playsinline preload="auto" disablepictureinpicture aria-hidden="true"></video>
+  <div class="brandmark">
+    <span class="bm-line" aria-hidden="true"></span>
+    <p class="bm-name"><span>Blackline</span></p>
+    <p class="bm-sub"><span>Executivo</span></p>
+  </div>
   <button type="button" class="skip-btn" data-skip>Pular</button>
 </div>
 <a class="skip" href="#conteudo">Pular para o conteúdo</a>
@@ -620,7 +641,7 @@
 </div>
 
 <script>
-  // Abertura: vídeo da porta do Corolla abrindo; quando a porta cobre a tela, ele se dissolve no site.
+  // Abertura: a roda do Corolla girando e a marca Blackline Executivo; no fim, tudo se dissolve no site.
   // Vídeo renderizado do mesmo modelo 3D da seção O carro. Se não tocar logo, o site abre direto.
   (() => {
     const root = document.documentElement;
@@ -629,8 +650,8 @@
     const video = document.getElementById('intro-video');
     const portrait = matchMedia('(orientation: portrait)').matches;
     const webm = video.canPlayType('video/webm; codecs="vp9"') !== '';
-    const base = portrait ? 'assets/intro/porta-m' : 'assets/intro/porta-1600';
-    video.poster = portrait ? 'assets/intro/porta-poster-m.jpg' : 'assets/intro/porta-poster.jpg';
+    const base = portrait ? 'assets/intro/roda-m' : 'assets/intro/roda-1600';
+    video.poster = portrait ? 'assets/intro/roda-poster-m.jpg' : 'assets/intro/roda-poster.jpg';
     video.src = base + (webm ? '.webm' : '.mp4');
 
     let leaving = false;
@@ -649,8 +670,11 @@
       try { sessionStorage.setItem('intro-porta', '1'); } catch (_) {}
       setTimeout(() => intro.remove(), 950);
     };
-    // a porta cobre a tela ~0,5 s antes do fim: é aí que o site começa a aparecer
-    video.addEventListener('timeupdate', () => { if (video.duration && video.currentTime >= video.duration - 0.5) leave(); });
+    // a marca entra sincronizada com o vídeo; 0,5 s antes do fim começa a fusão com o site
+    video.addEventListener('timeupdate', () => {
+      if (video.currentTime >= 0.8) intro.classList.add('show-logo');
+      if (video.duration && video.currentTime >= video.duration - 0.5) leave();
+    });
     video.addEventListener('ended', leave);
     video.addEventListener('error', finish);
     const guard = setTimeout(() => { if (video.currentTime < 0.05) finish(); }, 2500);
