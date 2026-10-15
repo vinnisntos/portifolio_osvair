@@ -3,12 +3,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Osvair dos Santos, motorista executivo em Sorocaba</title>
-<meta name="description" content="Transporte executivo e particular com Osvair dos Santos, em Sorocaba. Transfers para Guarulhos, Viracopos e Congonhas, viagens corporativas, eventos e viagens intermunicipais em Toyota Corolla Altis HV Hybrid 2023.">
+<title>Blackline Executivo · Osvair dos Santos, motorista executivo em Sorocaba</title>
+<meta name="description" content="Blackline Executivo: transporte executivo e particular com Osvair dos Santos, em Sorocaba. Transfers para Guarulhos, Viracopos e Congonhas, viagens corporativas, eventos e viagens intermunicipais em Toyota Corolla Altis HV Hybrid 2023.">
 <meta name="theme-color" content="#050506">
-<meta property="og:title" content="Osvair dos Santos, motorista executivo em Sorocaba">
+<meta property="og:title" content="Blackline Executivo · Osvair dos Santos, motorista executivo em Sorocaba">
 <meta property="og:description" content="Transfers para Guarulhos, Viracopos e Congonhas com o horário de busca calculado a partir do seu voo.">
 <meta property="og:image" content="https://osvairsantos.com.br/assets/osvair.jpg">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%23050506'/%3E%3Crect x='14' y='44' width='36' height='3' rx='1.5' fill='%235b8cff'/%3E%3Ctext x='32' y='38' text-anchor='middle' font-family='Arial,sans-serif' font-weight='700' font-size='30' fill='%23f5f5f4'%3EB%3C/text%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
@@ -82,6 +83,11 @@
   .island .pill:hover { background: var(--glass-2); color: var(--fg); }
   .island .cta { margin-left: 0.25rem; background: var(--fg); color: #0a0a0b; font-weight: 600; }
   .island .cta:hover { background: #fff; color: #0a0a0b; }
+
+  /* marca Blackline Executivo na navegação */
+  .brand-lock { display: inline-flex; flex-direction: column; align-items: flex-start; line-height: 1; font-weight: 600; font-size: 0.875rem; letter-spacing: 0.16em; text-transform: uppercase; }
+  .brand-lock small { margin-top: 0.2rem; font-size: 0.5625rem; font-weight: 500; letter-spacing: 0.46em; color: var(--muted); }
+  .island .who.brand { padding: 0 1rem; }
 
   /* vidro com borda dupla */
   .shell { padding: 0.5rem; border-radius: 2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.7); }
@@ -320,7 +326,7 @@
     .h2 { font-size: clamp(1.875rem, 8.5vw, 2.5rem); }
     .letter .body { font-size: 1.0625rem; }
     .portrait .tag { left: 0.75rem; right: 0.75rem; bottom: 0.75rem; }
-    .island .who span { display: none; }
+    .island .who:not(.brand) span { display: none; }
     .display { font-size: clamp(2.6rem, 12vw, 3.25rem); }
     .actions .btn { width: 100%; justify-content: space-between; }
     .actions .btn-ghost { justify-content: center; }
@@ -343,7 +349,7 @@
 <div class="grain" aria-hidden="true"></div>
 
 <nav class="island" aria-label="Principal">
-  <a class="who" href="#topo"><img src="assets/osvair.jpg" alt=""><span>Osvair dos Santos</span></a>
+  <a class="who brand" href="#topo" aria-label="Blackline Executivo, início"><span class="brand-lock">Blackline<small>Executivo</small></span></a>
   <a class="pill wide" href="#embarque">Embarque</a>
   <a class="pill wide" href="#rotas">Rotas</a>
   <a class="pill wide" href="#carro">O carro</a>
@@ -355,9 +361,9 @@
   <!-- Hero -->
   <header class="hero">
     <div>
-      <p class="eyebrow" data-reveal>Motorista executivo em Sorocaba</p>
+      <p class="eyebrow" data-reveal>Blackline Executivo · Sorocaba</p>
       <h1 class="display" data-reveal style="--i:1">Do seu endereço <span>ao portão de embarque.</span></h1>
-      <p class="lede" data-reveal style="--i:2">Osvair dos Santos leva você a Guarulhos, Viracopos e Congonhas num Toyota Corolla híbrido, com o horário de busca calculado a partir do seu voo.</p>
+      <p class="lede" data-reveal style="--i:2">Na Blackline Executivo, Osvair dos Santos leva você a Guarulhos, Viracopos e Congonhas num Toyota Corolla híbrido, com o horário de busca calculado a partir do seu voo.</p>
       <div class="actions" data-reveal style="--i:3">
         <a class="btn" href="https://wa.me/5515988164662?text=Ol%C3%A1%2C%20Osvair!%20Gostaria%20de%20agendar%20uma%20corrida." target="_blank" rel="noopener">Chamar no WhatsApp<span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
         <a class="btn btn-ghost" href="https://agenda.osvairsantos.com.br" target="_blank" rel="noopener">Agendar online</a>
@@ -567,7 +573,7 @@
         <div class="core pad">
           <div class="who-row">
             <img src="assets/osvair.jpg" width="56" height="56" alt="" loading="lazy">
-            <div><strong>Osvair dos Santos</strong><span>Motorista executivo, Sorocaba</span></div>
+            <div><strong>Osvair dos Santos</strong><span>Blackline Executivo, Sorocaba</span></div>
           </div>
           <div class="body">
             <p>Tenho 43 anos e passei mais de vinte deles na estrada. Aprendi que a viagem começa antes de o carro sair: começa quando eu olho o horário do seu compromisso.</p>
@@ -626,7 +632,7 @@
 
   <footer>
     <div class="foot-top">
-      <p class="foot-name">Osvair dos Santos</p>
+      <p class="foot-name">Blackline Executivo</p>
       <nav class="foot-links" aria-label="Rodapé">
         <a href="#embarque">Embarque</a>
         <a href="#rotas">Rotas</a>
@@ -635,7 +641,7 @@
         <a href="#contato">Contato</a>
       </nav>
     </div>
-    <p>© 2026 Osvair dos Santos. Pix, cartão de crédito e débito.</p>
+    <p>© 2026 Blackline Executivo · Osvair dos Santos, motorista executivo em Sorocaba. Pix, cartão de crédito e débito.</p>
     <p class="credits">Fotos de lugares e do modelo do carro: <a href="https://commons.wikimedia.org/w/index.php?curid=99929038">“2021 Toyota Corolla Altis Hybrid Premium Safety”</a> por Chanokchon, <a href="https://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla_sedan_E210_hydrid.jpg">“Toyota Corolla sedan E210 hydrid”</a> por Mateusmatsuda, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:SP-280-RODOVIA_CASTELLO_BRANCO_-_panoramio.jpg">“SP-280-Rodovia Castello Branco”</a> por James Martins, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Mapa-rodovia-castelo-branco.jpg">“Mapa-rodovia-castelo-branco”</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rod._Raposo_Tavares,_km_76_-_Alum%C3%ADnio_SP_(5224994086).jpg">“Rod. Raposo Tavares, km 76, Alumínio SP”</a> por Roberto Sabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Aeroporto_de_Guarulhos_em_Julho_de_2026.jpg">“Aeroporto de Guarulhos em Julho de 2026”</a> por Boaventuravinicius, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Fachada_do_Aeroporto_Internacional_de_Viracopos.18.6.2025.jpg">“Fachada do Aeroporto Internacional de Viracopos”</a> por Mtvdanilo, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Embarque_em_avi%C3%A3o_no_Aeroporto_de_Congonhas,_S%C3%A3o_Paulo,_novembro_de_2024_(1).jpg">“Embarque em avião no Aeroporto de Congonhas”</a> por Fronteira, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rio_Sorocaba_(cropped).jpg">“Rio Sorocaba”</a> por RobSabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>. Todas via Wikimedia Commons. Modelo 3D baseado em <a href="https://sketchfab.com/3d-models/2023-toyota-corolla-hybrid-cd2f6b34664442ad906a40bd00136881">“2023 Toyota Corolla Hybrid”</a> por <a href="https://sketchfab.com/tonielpro520">tonielpro520</a>, <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>, via Sketchfab.</p>
   </footer>
 </div>
