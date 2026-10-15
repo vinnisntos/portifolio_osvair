@@ -2,596 +2,537 @@
 <html lang="pt-BR">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Osvair dos Santos, motorista executivo em Sorocaba</title>
 <meta name="description" content="Transporte executivo e particular com Osvair dos Santos, em Sorocaba. Transfers para Guarulhos, Viracopos e Congonhas, viagens corporativas, eventos e viagens intermunicipais em Toyota Corolla Altis HV Hybrid 2023.">
-<script>document.documentElement.classList.add('js')</script>
+<meta name="theme-color" content="#050506">
+<meta property="og:title" content="Osvair dos Santos, motorista executivo em Sorocaba">
+<meta property="og:description" content="Transfers para Guarulhos, Viracopos e Congonhas com o horário de busca calculado a partir do seu voo.">
+<meta property="og:image" content="https://osvairsantos.com.br/assets/osvair.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Rokkitt:wght@800&family=Literata:ital,wght@0,400;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="preload" as="image" href="assets/osvair.jpg">
+<script>document.documentElement.classList.add('js')</script>
 
 <style>
+  /* Direção: high-end-visual-design, arquétipo "Ethereal Glass" (o mesmo da agenda.osvairsantos.com.br).
+     Fundo escuro com a estrada desfocada, cartões de vidro com borda dupla, Geist, pílulas. */
   :root {
-    --bg: #dfdedb;
-    --surface: #d3d2ce;
-    --ink: #26251e;
-    --muted: #55534b;
-    --accent: #2456d6;
-    --accent-ink: #ffffff;
-    --accent-step: #3d6ae0;
-    --accent-pale: #e4eafb;
-    --night: #26251e;
-    --night-step: #3a3930;
-
-    --font-display: "Rokkitt", "Arial Narrow", sans-serif;
-    --font-text: "Literata", Georgia, serif;
-
-    --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.875rem);
-    --step-body: clamp(1.125rem, 1.05rem + 0.3vw, 1.3125rem);
-    --step-lead: clamp(1.25rem, 1.1rem + 0.7vw, 1.625rem);
-    --step-head: clamp(2rem, 1.3rem + 2vw, 3rem);
-
-    --margin: clamp(1rem, 2.2vw, 2rem);
-    --col-pad: clamp(1.5rem, 4vw, 4.5rem);
-    --section: clamp(6rem, 11vw, 11rem);
-
-    --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
-    --ease-soft: cubic-bezier(0.33, 1, 0.68, 1);
-    --t-press: 140ms;
-    --t-hover: 180ms;
-    --t-ui: 240ms;
+    --bg: #050506;
+    --fg: #f5f5f4;
+    --muted: #a1a1aa;
+    --faint: #71717a;
+    --line: rgba(255, 255, 255, 0.1);
+    --glass: rgba(18, 18, 22, 0.62);
+    --glass-2: rgba(255, 255, 255, 0.05);
+    --field: rgba(255, 255, 255, 0.06);
+    --accent: #5b8cff;
+    --accent-soft: rgba(91, 140, 255, 0.18);
+    --success: #7ee2a8;
+    --spring: cubic-bezier(0.32, 0.72, 0, 1);
+    --t: 240ms;
   }
 
   *, *::before, *::after { box-sizing: border-box; }
-  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
-  body { margin: 0; background: var(--bg); color: var(--ink); font-family: var(--font-text); font-size: var(--step-body); line-height: 1.6; -webkit-font-smoothing: antialiased; }
-  h1, h2, h3, p, figure, blockquote, ul, ol, dl, dd { margin: 0; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; color-scheme: dark; scroll-behavior: smooth; }
+  body { margin: 0; background: var(--bg); color: var(--fg); font-family: "Geist", system-ui, sans-serif; font-size: 1.0625rem; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  h1, h2, h3, p, ul, ol, dl, dd, figure { margin: 0; }
   ul[class], ol[class] { padding: 0; list-style: none; }
   img { display: block; max-width: 100%; }
-  button, input, select { font: inherit; color: inherit; }
+  button, input { font: inherit; color: inherit; }
   button { background: none; border: 0; padding: 0; cursor: pointer; }
   a { color: inherit; }
-  :target { scroll-margin-top: 2rem; }
-  ::selection { background: var(--accent); color: var(--accent-ink); }
-  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-  p { max-width: 54ch; text-wrap: pretty; }
-  p + p { margin-top: 0.9em; }
-  .nums { font-variant-numeric: tabular-nums; }
+  ::selection { background: var(--accent); color: #fff; }
+  :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; border-radius: 0.5rem; }
+  :target { scroll-margin-top: 6rem; }
   .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
-
-  .head { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--step-head); line-height: 0.9; letter-spacing: -0.01em; text-wrap: balance; }
-  .lead { font-size: var(--step-lead); line-height: 1.35; }
-  .small { font-size: var(--step-small); line-height: 1.5; }
   .muted { color: var(--muted); }
+  .skip { position: absolute; left: 1rem; top: -4rem; z-index: 30; padding: 0.6rem 1rem; border-radius: 999px; background: var(--fg); color: #0a0a0b; text-decoration: none; }
+  .skip:focus { top: 1rem; }
 
-  .button { display: inline-flex; align-items: center; justify-content: center; min-height: 3.25rem; padding: 0 1.5rem; background: var(--accent); color: var(--accent-ink); text-decoration: none; font-weight: 600; font-size: var(--step-small); letter-spacing: 0.01em; transition: transform var(--t-press) var(--ease-out), background-color var(--t-hover) ease; }
-  .button:hover { background: var(--ink); }
-  .button:active { transform: scale(0.97); }
-  .link { text-decoration: underline; text-decoration-thickness: 0.07em; text-underline-offset: 0.2em; transition: color var(--t-hover) ease; }
-  .link:hover { color: var(--accent); }
+  /* ambiente */
+  .ambient { position: fixed; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+  .ambient img { position: absolute; inset: -4%; width: 108%; height: 108%; object-fit: cover; filter: blur(40px) saturate(1.2); opacity: 0.5; }
+  .ambient::before { content: ""; position: absolute; inset: 0; z-index: 1; background: radial-gradient(55% 45% at 12% 8%, rgba(91, 140, 255, 0.22), transparent 70%), radial-gradient(45% 40% at 92% 85%, rgba(255, 140, 70, 0.14), transparent 70%), linear-gradient(180deg, rgba(5, 5, 6, 0.5), rgba(5, 5, 6, 0.93)); }
+  .grain { position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.05; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+  .wrap { position: relative; z-index: 2; width: min(100% - 2rem, 76rem); margin: 0 auto; }
 
-  /* ---------- palco dividido ---------- */
-  .split { display: grid; grid-template-columns: 47vw minmax(0, 1fr); }
-  .stage { position: sticky; top: 20px; align-self: start; height: calc(100svh - 40px); margin: 20px 0 20px 20px; overflow: hidden; background: var(--surface); }
-  .stage img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 800ms var(--ease-soft); }
-  .stage img.is-on { opacity: 1; }
-  .stage .portrait { object-position: 50% 20%; }
-  .stage figcaption { position: absolute; left: 0; bottom: 0; z-index: 2; padding: 0.5rem 0.75rem; background: var(--bg); color: var(--ink); font-size: var(--step-small); max-width: 80%; opacity: 0; transition: opacity var(--t-ui) ease; }
-  .stage figcaption.is-on { opacity: 1; }
-  .col { min-width: 0; }
-  .pad { padding-inline: var(--col-pad); }
+  /* ilha de navegação */
+  .island { position: fixed; top: 1.25rem; left: 50%; z-index: 20; transform: translateX(-50%); display: flex; align-items: center; gap: 0.125rem; padding: 0.375rem; border-radius: 999px; background: rgba(20, 20, 24, 0.55); border: 1px solid var(--line); backdrop-filter: blur(24px) saturate(1.4); -webkit-backdrop-filter: blur(24px) saturate(1.4); box-shadow: 0 10px 40px -12px rgba(0, 0, 0, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.06); white-space: nowrap; }
+  .island .who { display: flex; align-items: center; gap: 0.6rem; padding: 0 0.75rem 0 0.25rem; font-weight: 500; font-size: 0.9375rem; text-decoration: none; }
+  .island .who img { width: 2rem; height: 2rem; border-radius: 999px; object-fit: cover; object-position: 50% 20%; }
+  .island .pill { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 0.9rem; border-radius: 999px; font-size: 0.875rem; color: var(--muted); text-decoration: none; transition: background-color var(--t) var(--spring), color var(--t) var(--spring); }
+  .island .pill:hover { background: var(--glass-2); color: var(--fg); }
+  .island .cta { margin-left: 0.25rem; background: var(--fg); color: #0a0a0b; font-weight: 600; }
+  .island .cta:hover { background: #fff; color: #0a0a0b; }
+
+  /* vidro com borda dupla */
+  .shell { padding: 0.5rem; border-radius: 2rem; background: rgba(255, 255, 255, 0.04); border: 1px solid var(--line); box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.7); }
+  .core { border-radius: 1.5rem; background: var(--glass); box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.08); backdrop-filter: blur(20px) saturate(1.3); -webkit-backdrop-filter: blur(20px) saturate(1.3); overflow: hidden; }
+  .pad { padding: clamp(1.5rem, 3vw, 2.5rem); }
+
+  .eyebrow { display: inline-flex; align-items: center; gap: 0.5rem; padding: 0.3rem 0.8rem; border-radius: 999px; border: 1px solid var(--line); background: var(--glass-2); font-size: 0.75rem; letter-spacing: 0.04em; color: var(--muted); }
+  .eyebrow::before { content: ""; width: 0.375rem; height: 0.375rem; border-radius: 999px; background: var(--success); box-shadow: 0 0 12px var(--success); }
+  .h2 { margin-top: 1rem; font-size: clamp(2rem, 1.4rem + 2.4vw, 3.25rem); line-height: 1.02; letter-spacing: -0.045em; font-weight: 600; text-wrap: balance; }
+  .h2 span, .display span { color: var(--muted); }
+  .lede { margin-top: 1rem; max-width: 46ch; color: var(--muted); text-wrap: pretty; }
+  section { padding-block: clamp(4.5rem, 9vw, 8rem); }
+
+  /* botões */
+  .btn { display: inline-flex; align-items: center; gap: 0.75rem; min-height: 3.25rem; padding: 0 0.5rem 0 1.5rem; border-radius: 999px; background: var(--fg); color: #0a0a0b; font-weight: 600; font-size: 0.9375rem; text-decoration: none; box-shadow: 0 10px 30px -10px rgba(245, 245, 244, 0.35); transition: transform var(--t) var(--spring), background-color var(--t) var(--spring), box-shadow var(--t) var(--spring); }
+  .btn .arrow { display: grid; place-items: center; width: 2.25rem; height: 2.25rem; border-radius: 999px; background: rgba(0, 0, 0, 0.08); transition: transform 420ms var(--spring); }
+  .btn:hover { background: #fff; box-shadow: 0 14px 40px -10px rgba(245, 245, 244, 0.45); }
+  .btn:hover .arrow { transform: translate(2px, -1px) scale(1.06); }
+  .btn:active { transform: scale(0.98); }
+  .btn-ghost { padding: 0 1.5rem; background: var(--glass-2); color: var(--fg); border: 1px solid var(--line); box-shadow: none; }
+  .btn-ghost:hover { background: rgba(255, 255, 255, 0.1); box-shadow: none; }
 
   /* hero */
-  .hero { position: relative; min-height: 100svh; }
-  .nav { position: absolute; top: 2rem; right: 2rem; display: flex; align-items: center; gap: clamp(1rem, 1.8vw, 1.75rem); font-size: var(--step-small); }
-  .nav a { text-decoration: none; }
-  .nav a:not(.button):hover { color: var(--accent); }
-  .nav .button { min-height: 2.5rem; padding: 0 1rem; }
-  .nav .menu-word { display: none; }
-  .hero-text { position: absolute; top: 44%; left: var(--col-pad); right: var(--col-pad); transform: translateY(-50%); }
-  .hero-text .lead { max-width: 30ch; }
-  .hero-actions { margin-top: 1.5rem; font-size: var(--step-small); }
-  .wordmark { position: absolute; left: calc(var(--cross) * -1); right: 2rem; bottom: 40px; z-index: 3; margin: 0; font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: calc(17.6vw - 9px); line-height: 0.78; letter-spacing: -0.01em; text-align: right; color: var(--ink); pointer-events: none; white-space: nowrap; transform-origin: 100% 100%; --cross: 10vw; }
-  .wordmark span { display: block; }
-  /* o trecho que cruza a foto ganha a cor do papel: mesma geometria horizontal em qualquer rolagem */
-  .wordmark .wm-paper { position: absolute; inset: 0; color: var(--bg); clip-path: inset(-20% calc(100% - var(--cross)) -20% -20%); }
+  .hero { min-height: 100dvh; display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(0, 0.9fr); gap: clamp(2rem, 5vw, 5rem); align-items: center; padding-top: 7rem; padding-bottom: 3rem; }
+  .display { margin-top: 1.5rem; font-size: clamp(3rem, 1.4rem + 3.8vw, 4.75rem); line-height: 0.96; letter-spacing: -0.05em; font-weight: 600; text-wrap: balance; }
+  .hero .lede { font-size: 1.1875rem; max-width: 40ch; margin-top: 1.5rem; }
+  .actions { margin-top: 2.25rem; display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .portrait { position: relative; }
+  .portrait .core { aspect-ratio: 4 / 5; }
+  .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 18%; }
+  .portrait .tag { position: absolute; left: 1.5rem; bottom: 1.5rem; right: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.875rem 1rem; border-radius: 1.125rem; background: rgba(12, 12, 14, 0.55); border: 1px solid var(--line); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); }
+  .portrait .tag strong { display: block; font-weight: 600; }
+  .portrait .tag span { font-size: 0.8125rem; color: var(--muted); }
+  .portrait .years { text-align: right; font-size: 1.5rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1; }
+  .portrait .years small { display: block; font-size: 0.75rem; font-weight: 400; color: var(--muted); letter-spacing: 0; }
 
-  /* embarque: o roteiro */
-  .leg { background: var(--night); color: var(--bg); padding-block: var(--section); margin-top: var(--section); }
-  .leg .head { color: var(--bg); }
-  .leg-intro p { margin-top: 1.25rem; max-width: 34ch; }
-  .planner { margin-top: 2.25rem; display: grid; gap: 1.25rem; max-width: 30rem; }
+  /* embarque: a calculadora */
+  .bento { display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 1rem; margin-top: 2.5rem; }
+  .planner-card { grid-column: span 5; }
+  .slip-card { grid-column: span 7; }
+  .planner { display: grid; gap: 1.5rem; }
   .planner fieldset { border: 0; margin: 0; padding: 0; min-width: 0; }
-  .planner legend { padding: 0; margin-bottom: 0.5rem; font-size: var(--step-small); }
-  .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 6px; }
+  .planner legend, .planner label.lbl { display: block; padding: 0; margin-bottom: 0.6rem; font-size: 0.875rem; font-weight: 500; }
+  .seg { display: grid; grid-auto-flow: column; grid-auto-columns: 1fr; gap: 0.25rem; padding: 0.25rem; border-radius: 999px; background: var(--field); border: 1px solid var(--line); }
   .seg input { position: absolute; opacity: 0; pointer-events: none; }
-  .seg label { display: flex; align-items: center; justify-content: center; min-height: 3rem; padding: 0 0.75rem; background: var(--night-step); color: var(--bg); font-size: var(--step-small); font-weight: 600; cursor: pointer; text-align: center; transition: background-color var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
-  .seg label:hover { background: #4a493f; }
-  .seg label:active { transform: scale(0.97); }
-  .seg input:checked + label { background: var(--bg); color: var(--ink); }
-  .seg input:focus-visible + label { outline: 2px solid var(--accent-pale); outline-offset: 2px; }
-  .time-field { width: 100%; min-height: 3rem; padding: 0 0.9rem; background: var(--night-step); color: var(--bg); border: 0; font-size: var(--step-body); font-variant-numeric: tabular-nums; color-scheme: dark; transition: background-color var(--t-hover) ease; }
-  .time-field:hover, .time-field:focus { background: #4a493f; }
+  .seg label { display: flex; align-items: center; justify-content: center; min-height: 2.5rem; padding: 0 0.75rem; border-radius: 999px; font-size: 0.875rem; color: var(--muted); cursor: pointer; transition: background-color var(--t) var(--spring), color var(--t) var(--spring), transform var(--t) var(--spring); }
+  .seg label:hover { color: var(--fg); }
+  .seg label:active { transform: scale(0.96); }
+  .seg input:checked + label { background: var(--fg); color: #0a0a0b; font-weight: 600; box-shadow: 0 6px 18px -8px rgba(245, 245, 244, 0.5); }
+  .seg input:focus-visible + label { outline: 2px solid var(--accent); outline-offset: 2px; }
+  .time-field { width: 100%; min-height: 3rem; padding: 0 1rem; border-radius: 0.875rem; background: var(--field); border: 1px solid var(--line); font-size: 1.125rem; font-variant-numeric: tabular-nums; color-scheme: dark; transition: border-color var(--t) var(--spring), box-shadow var(--t) var(--spring); }
+  .time-field:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
 
-  .slip { margin-top: 3rem; width: min(100%, 32rem); background: var(--bg); color: var(--ink); padding: 1.5rem 1.5rem 2.75rem; font-size: var(--step-body); font-variant-numeric: tabular-nums; clip-path: polygon(0 0, 100% 0, 100% calc(100% - 10px), 96.43% calc(100% - 10px), 92.86% 100%, 89.29% calc(100% - 10px), 85.71% 100%, 82.14% calc(100% - 10px), 78.57% 100%, 75.00% calc(100% - 10px), 71.43% 100%, 67.86% calc(100% - 10px), 64.29% 100%, 60.71% calc(100% - 10px), 57.14% 100%, 53.57% calc(100% - 10px), 50.00% 100%, 46.43% calc(100% - 10px), 42.86% 100%, 39.29% calc(100% - 10px), 35.71% 100%, 32.14% calc(100% - 10px), 28.57% 100%, 25.00% calc(100% - 10px), 21.43% 100%, 17.86% calc(100% - 10px), 14.29% 100%, 10.71% calc(100% - 10px), 7.14% 100%, 3.57% calc(100% - 10px), 0% calc(100% - 10px)); }
-  .slip h3 { font-family: var(--font-text); font-size: var(--step-body); font-weight: 600; margin-top: 1.75rem; }
-  .slip h3:first-child { margin-top: 0; }
-  .slip ul { margin: 0.5rem 0 0; padding: 0; list-style: none; }
-  .slip li { display: flex; align-items: baseline; gap: 0.5rem; padding-block: 0.3rem; }
-  .slip li .what { flex: 0 1 auto; }
-  .slip li .dots { flex: 1 1 1.5rem; min-width: 1.5rem; border-bottom: 4px dotted var(--muted); transform: translateY(-0.3em); }
+  .slip-card .core { display: grid; grid-template-rows: auto 1fr; }
+  .airport { position: relative; height: 11rem; overflow: hidden; }
+  .airport img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0; transition: opacity 600ms var(--spring); }
+  .airport img.is-on { opacity: 1; }
+  .airport::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10, 10, 12, 0) 30%, rgba(14, 14, 17, 0.95)); }
+  .airport p { position: absolute; left: clamp(1.5rem, 3vw, 2.5rem); bottom: 0.75rem; z-index: 1; font-size: 0.8125rem; color: var(--muted); }
+  .slip { padding: 0.5rem clamp(1.5rem, 3vw, 2.5rem) clamp(1.5rem, 3vw, 2.5rem); font-variant-numeric: tabular-nums; }
+  .slip h3 { margin-top: 1.25rem; font-size: 0.8125rem; font-weight: 500; color: var(--faint); }
+  .slip ul { margin: 0.4rem 0 0; padding: 0; list-style: none; }
+  .slip li { display: flex; align-items: baseline; gap: 0.75rem; padding-block: 0.4rem; }
+  .slip li .dots { flex: 1 1 1rem; min-width: 1rem; border-bottom: 1px dashed rgba(255, 255, 255, 0.14); transform: translateY(-0.3em); }
   .slip li .val { flex: none; white-space: nowrap; font-weight: 600; }
-  .slip .total { margin: 1.75rem -1.5rem 0; max-width: none; min-height: 44px; display: flex; align-items: center; padding: 0.6rem 1.5rem; background: var(--accent); color: var(--accent-ink); font-weight: 600; }
-  .slip-note { margin-top: 1.25rem; font-size: var(--step-small); max-width: 46ch; }
-  .leg .button { margin-top: 1.75rem; }
-  .leg .button:hover { background: var(--bg); color: var(--ink); }
+  .total { margin-top: 1.5rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; padding: 1rem 1.125rem; border-radius: 1.25rem; background: var(--accent-soft); border: 1px solid rgba(91, 140, 255, 0.35); }
+  .total .big { font-size: 1.75rem; font-weight: 600; letter-spacing: -0.03em; line-height: 1.1; }
+  .total .small { font-size: 0.8125rem; color: #b7c6f5; }
+  .slip-note { margin-top: 1rem; font-size: 0.8125rem; color: var(--faint); }
+  .slip .btn { margin-top: 1.25rem; }
 
   /* rotas */
-  .routes { padding-block: var(--section); container-type: inline-size; }
-  .giant { font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: 32cqw; line-height: 0.8; letter-spacing: -0.01em; margin-left: -0.04em; }
-  .bars { margin-top: 20px; display: grid; gap: 6px; }
-  .bars details { background: var(--surface); }
-  .bars summary { list-style: none; display: flex; align-items: center; justify-content: space-between; min-height: 56px; padding: 0 18px; font-weight: 600; font-size: var(--step-body); cursor: pointer; transition: background-color var(--t-hover) ease; }
+  .routes { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: clamp(2rem, 5vw, 5rem); align-items: start; }
+  .routes .intro-col { position: sticky; top: 7rem; }
+  .bars { display: grid; gap: 0.5rem; }
+  .bars details { border-radius: 1.25rem; background: var(--glass); border: 1px solid var(--line); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); transition: border-color var(--t) var(--spring); }
+  .bars details[open] { border-color: rgba(255, 255, 255, 0.18); }
+  .bars summary { list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 1rem; min-height: 3.75rem; padding: 0 1.25rem; font-weight: 500; cursor: pointer; }
   .bars summary::-webkit-details-marker { display: none; }
-  .bars summary:hover { background: #c8c7c2; }
-  .bars summary .plus { font-family: var(--font-display); font-size: var(--step-lead); line-height: 1; transition: transform var(--t-ui) var(--ease-out); }
+  .bars .plus { display: grid; place-items: center; width: 2rem; height: 2rem; border-radius: 999px; background: var(--glass-2); color: var(--muted); transition: transform 400ms var(--spring), background-color var(--t) var(--spring); }
+  .bars summary:hover .plus { background: rgba(255, 255, 255, 0.1); color: var(--fg); }
   .bars details[open] .plus { transform: rotate(45deg); }
-  .bars dl { padding: 4px 18px 20px; display: grid; gap: 14px; font-size: var(--step-body); }
+  .bars dl { display: grid; gap: 0.75rem; padding: 0 1.25rem 1.25rem; font-size: 0.9375rem; }
   .bars dl div { display: flex; justify-content: space-between; gap: 1rem; align-items: baseline; }
-  .bars dt { min-width: 0; }
-  .bars dd { text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; }
-  .routes-note { margin-top: 1.25rem; font-size: var(--step-small); }
+  .bars dt { color: var(--muted); }
+  .bars dd { text-align: right; white-space: nowrap; font-variant-numeric: tabular-nums; }
+  .routes-note { margin-top: 1rem; font-size: 0.8125rem; color: var(--faint); }
+
+  /* o carro */
+  .car-photo { grid-column: span 7; }
+  .car-photo .core { aspect-ratio: 4 / 3; position: relative; }
+  .car-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 40% 55%; }
+  .car-photo figcaption { position: absolute; left: 1rem; bottom: 1rem; right: 1rem; padding: 0.5rem 0.8rem; border-radius: 0.875rem; background: rgba(12, 12, 14, 0.6); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); font-size: 0.75rem; color: var(--muted); }
+  .car-info { grid-column: span 5; }
+  .car-info .core { height: 100%; display: flex; flex-direction: column; gap: 1.5rem; }
+  .tabs { display: inline-flex; gap: 0.25rem; padding: 0.25rem; border-radius: 999px; background: var(--field); border: 1px solid var(--line); align-self: flex-start; }
+  .tabs button { min-height: 2.25rem; padding: 0 1rem; border-radius: 999px; font-size: 0.875rem; color: var(--muted); transition: background-color var(--t) var(--spring), color var(--t) var(--spring); }
+  .tabs button:hover { color: var(--fg); }
+  .tabs button[aria-selected="true"] { background: var(--fg); color: #0a0a0b; font-weight: 600; }
+  .car-info h3 { font-size: 1.75rem; line-height: 1.1; letter-spacing: -0.035em; font-weight: 600; }
+  .car-info h3 span { color: var(--muted); }
+  .panel p { color: var(--muted); }
+  .panel ul { margin-top: 1rem; display: grid; gap: 0.5rem; padding: 0; list-style: none; }
+  .panel li { display: flex; gap: 0.6rem; align-items: center; }
+  .panel li::before { content: ""; flex: none; width: 0.375rem; height: 0.375rem; border-radius: 999px; background: var(--accent); }
+  .js .panel[hidden] { display: none; }
+  .car-info .btn { margin-top: auto; align-self: flex-start; }
 
   /* carta */
-  .letter { padding-block: 160px; }
-  .letter-inner { max-width: 33rem; margin-inline: auto; }
-  .letter-inner img { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; object-position: 50% 20%; }
-  .letter-inner .body { margin-top: 28px; }
-  .letter-inner .body p { line-height: 1.55; }
-  .letter-inner .body p + p { margin-top: 1.55em; }
-  .mark { background: var(--accent-pale); padding: 0 0.15em; }
-  .sign { margin-top: 2.5rem; }
-  .sign .name { font-style: italic; font-weight: 600; font-size: var(--step-lead); line-height: 1.2; }
-  .sign .role { margin-top: 0.25rem; }
-
-  /* o carro: palco quebra e ocupa a largura */
-  .car { display: grid; grid-template-columns: 1fr 1fr; min-height: 88svh; background: var(--surface); }
-  .car-photo { display: flex; flex-direction: column; justify-content: center; padding: 40px; }
-  .car-photo .frame { aspect-ratio: 1; overflow: hidden; background: var(--bg); }
-  .car-photo img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 55%; }
-  .car-photo figcaption { margin-top: 0.75rem; font-size: var(--step-small); color: var(--muted); }
-  .car-text { display: flex; flex-direction: column; justify-content: space-between; gap: 3rem; padding: 40px var(--col-pad) 40px 40px; }
-  .tabs { display: flex; flex-wrap: wrap; gap: 0.5rem 1.75rem; }
-  .tabs button { font-size: var(--step-body); color: var(--muted); padding-block: 0.25rem; transition: color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
-  .tabs button:hover { color: var(--ink); }
-  .tabs button:active { transform: scale(0.97); }
-  .tabs button[aria-selected="true"] { color: var(--ink); font-weight: 600; }
-  .car-text .head span { display: block; }
-  .panel { margin-top: 48px; max-width: 34ch; }
-  .panel ul { margin-top: 1.25rem; padding-left: 1.1em; display: grid; gap: 0.35rem; }
-  .js .panel[hidden] { display: none; }
-  .cells { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
-  .cells a { display: flex; align-items: center; justify-content: center; min-height: 72px; padding: 0 1rem; text-decoration: none; font-weight: 600; font-size: var(--step-small); text-align: center; transition: background-color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
-  .cells a:active { transform: scale(0.98); }
-  .cells .ink { background: var(--ink); color: var(--bg); }
-  .cells .ink:hover { background: var(--accent); }
-  .cells .tone { background: var(--bg); color: var(--ink); }
-  .cells .tone:hover { background: #ebeae7; }
+  .letter { max-width: 46rem; margin: 0 auto; }
+  .letter .who-row { display: flex; align-items: center; gap: 1rem; }
+  .letter .who-row img { width: 3.5rem; height: 3.5rem; border-radius: 1rem; object-fit: cover; object-position: 50% 20%; }
+  .letter .who-row strong { display: block; font-weight: 600; }
+  .letter .who-row span { font-size: 0.875rem; color: var(--muted); }
+  .letter .body { margin-top: 1.75rem; display: grid; gap: 1.1rem; font-size: 1.1875rem; line-height: 1.6; color: #d4d4d8; }
+  .mark { color: var(--fg); background: var(--accent-soft); border-radius: 0.375rem; padding: 0 0.25rem; }
 
   /* contato */
-  .contact { background: var(--accent); color: var(--accent-ink); min-height: 80svh; padding-block: 48px 72px; overflow: hidden; }
-  .strip { display: flex; gap: 8px; width: max-content; }
-  .strip img { height: 150px; width: auto; flex: none; object-fit: cover; }
-  .strip .r34 { aspect-ratio: 3 / 4; }
-  .strip .r11 { aspect-ratio: 1; }
-  .strip .r32 { aspect-ratio: 3 / 2; }
-  .contact-body { padding-inline: var(--margin); margin-top: 72px; }
-  
-  .contact-sub { margin-top: 1rem; max-width: 46ch; }
-  .book { margin-top: 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
-  .book input, .book button { width: 100%; min-height: 96px; border: 0; padding: 0 1rem; text-align: center; font-size: var(--step-body); }
-  .book input { background: var(--accent-step); color: #fff; transition: background-color var(--t-hover) ease, color var(--t-hover) ease; }
-  .book input::placeholder { color: #e8eefc; }
-  .book input:focus { background: #fff; color: var(--ink); outline: none; }
-  .book input:focus::placeholder { color: var(--muted); }
-  .book button { background: #fff; color: var(--accent); font-weight: 600; transition: background-color var(--t-hover) ease, color var(--t-hover) ease, transform var(--t-press) var(--ease-out); }
-  .book button:hover { background: var(--ink); color: #fff; }
-  .book button:active { transform: scale(0.98); }
-  .book-notes { margin-top: 0.75rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; font-size: var(--step-small); }
-  .book-notes p:last-child { grid-column: 3; }
-  .book-notes a { color: #fff; }
+  .contact .core { position: relative; }
+  .strip-wrap { overflow: hidden; padding-block: 1.25rem 0; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+  .strip { display: flex; gap: 0.5rem; width: max-content; }
+  .strip img { height: 7.5rem; width: auto; aspect-ratio: 4 / 3; flex: none; object-fit: cover; border-radius: 1rem; }
+  .book { margin-top: 1.75rem; display: grid; grid-template-columns: 1fr 1fr auto; gap: 0.5rem; }
+  .book input { min-height: 3.25rem; padding: 0 1.1rem; border-radius: 999px; background: var(--field); border: 1px solid var(--line); font-size: 1rem; transition: border-color var(--t) var(--spring), box-shadow var(--t) var(--spring); }
+  .book input::placeholder { color: var(--faint); }
+  .book input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft); }
+  .book-notes { margin-top: 1rem; display: flex; flex-wrap: wrap; gap: 0.5rem 1.5rem; font-size: 0.875rem; color: var(--muted); }
+  .book-notes a { color: var(--fg); }
 
   /* rodapé */
-  .foot { display: grid; grid-template-columns: 1fr 1fr; min-height: 100svh; }
-  .foot-photo { position: relative; overflow: hidden; background: var(--surface); }
-  .foot-photo img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 30%; transform: scale(1.45); transform-origin: 50% 32%; }
-  .foot-side { display: flex; flex-direction: column; padding: 80px var(--margin) 2rem clamp(1.5rem, 6vw, 6rem); }
-  .foot-side .brand { font-weight: 600; font-size: var(--step-small); }
-  .foot-menu { margin-top: 2rem; display: grid; gap: 28px; }
-  .foot-menu a { display: inline-block; font-family: var(--font-display); font-weight: 800; text-transform: uppercase; font-size: var(--step-head); line-height: 0.9; text-decoration: none; transition: transform var(--t-ui) var(--ease-out), color var(--t-hover) ease; }
-  @media (hover: hover) and (pointer: fine) {
-    .foot-menu:hover a { color: var(--muted); }
-    .foot-menu a:hover { color: var(--ink); transform: translateX(12px); }
-  }
-  .foot-info { margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; font-size: var(--step-small); }
-  .foot-info h2 { font-family: var(--font-text); font-size: var(--step-small); font-weight: 600; }
-  .foot-info a { display: block; }
-  .legal { margin-top: auto; padding-top: 3rem; font-size: var(--step-small); }
-  .credits { margin-top: 0.75rem; max-width: 70ch; }
-  .credits a { color: var(--ink); }
+  footer { padding: 3rem 0 2.5rem; color: var(--faint); font-size: 0.8125rem; }
+  .foot-top { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 1.5rem; align-items: flex-end; padding-bottom: 2rem; margin-bottom: 1.5rem; border-bottom: 1px solid var(--line); }
+  .foot-name { font-size: clamp(2.25rem, 1.4rem + 3.6vw, 4.5rem); line-height: 1; letter-spacing: -0.05em; font-weight: 600; color: var(--fg); }
+  .foot-links { display: flex; flex-wrap: wrap; gap: 0.25rem; }
+  .foot-links a { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 0.9rem; border-radius: 999px; color: var(--muted); text-decoration: none; transition: background-color var(--t) var(--spring), color var(--t) var(--spring); }
+  .foot-links a:hover { background: var(--glass-2); color: var(--fg); }
+  .credits { max-width: 90ch; line-height: 1.7; }
+  .credits a { color: var(--muted); }
 
-  /* ---------- telefone ---------- */
-  @media (max-width: 820px) {
-    .split { display: block; }
-    .stage { position: relative; top: 0; height: 58svh; margin: 12px; }
-    .stage figcaption { display: none; }
-    .hero { min-height: 0; padding-bottom: 3.5rem; display: flex; flex-direction: column; }
-    .hero .wordmark { order: -1; }
-    .nav { position: absolute; top: calc(-58svh + 12px); right: 12px; left: 12px; justify-content: space-between; padding: 12px; }
-    .nav a:not(.button):not(.menu-word) { display: none; }
-    .nav .menu-word { display: inline-flex; align-items: center; min-height: 2.5rem; padding: 0 0.9rem; background: var(--bg); }
-    .wordmark { position: relative; left: auto; right: auto; bottom: auto; display: block; margin-top: 4px; padding-inline: 12px; font-size: 25vw; text-align: left; }
-    .wordmark .wm-paper { display: none; }
-    .hero-text { position: static; transform: none; margin-top: 1.25rem; padding-inline: 20px; }
-    .hero-text .lead { font-size: 1.0625rem; }
-    .pad { padding-inline: 20px; }
-    .leg { margin-top: 0; }
-    .slip { width: calc(100% + 8px); margin-inline: -4px; }
-    .letter { padding-block: 96px; }
-    .letter-inner { margin-inline: 0; }
-    .car { grid-template-columns: 1fr; min-height: 0; }
-    .car-photo { padding: 16px; }
-    .car-text { padding: 8px 16px 48px; gap: 2rem; }
-    .cells { grid-template-columns: 1fr; }
-    .cells a { min-height: 60px; }
-    .strip img { height: 110px; }
-    .contact { overflow-x: hidden; }
-    .contact .head { font-size: 9vw; }
-    .book { grid-template-columns: 1fr; }
-    .book input, .book button { min-height: 60px; }
-    .book-notes { grid-template-columns: 1fr; }
-    .book-notes p:last-child { grid-column: auto; }
-    .foot { grid-template-columns: 1fr; min-height: 0; }
-    .foot-photo { height: 50svh; }
-    .foot-side { padding: 2.5rem 20px 2rem; }
-    .foot-menu { gap: 20px; }
-    .foot-menu a { font-size: 8vw; }
-    .foot-info { grid-template-columns: 1fr; }
-  }
-
-  /* ---------- movimento ---------- */
+  /* movimento */
   @media (prefers-reduced-motion: no-preference) {
-    .js [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity 700ms var(--ease-out), transform 900ms var(--ease-out); transition-delay: calc(var(--i, 0) * 80ms); }
-    .js [data-reveal].is-in { opacity: 1; transform: none; }
-    .js [data-rise] { opacity: 0; transform: translateY(20px); animation: rise 800ms var(--ease-out) forwards; animation-delay: calc(var(--i, 0) * 90ms + 120ms); }
-    .stage img.is-on { animation: drift 24s var(--ease-soft) both; }
-    .strip { animation: marquee 70s linear infinite; }
-    .contact:hover .strip { animation-play-state: paused; }
+    .js [data-reveal] { opacity: 0; transform: translateY(28px); filter: blur(8px); transition: opacity 800ms var(--spring), transform 900ms var(--spring), filter 800ms var(--spring); transition-delay: calc(var(--i, 0) * 90ms); }
+    .js [data-reveal].is-in { opacity: 1; transform: none; filter: none; }
+    .ambient img { animation: drift 40s ease-in-out infinite alternate; }
+    .strip { animation: marquee 60s linear infinite; }
+    .strip-wrap:hover .strip { animation-play-state: paused; }
   }
-  @supports (animation-timeline: view()) {
-    @media (prefers-reduced-motion: no-preference) and (min-width: 821px) {
-      .wordmark { animation: settle linear both; animation-timeline: view(); animation-range: exit 0% exit 100%; }
-      .foot-photo img { animation: closer linear both; animation-timeline: view(); animation-range: entry 0% cover 60%; }
-    }
-  }
-  @keyframes rise { to { opacity: 1; transform: none; } }
-  @keyframes drift { from { transform: scale(1.06); } to { transform: scale(1); } }
+  @keyframes drift { from { transform: scale(1.05); } to { transform: scale(1.12) translate3d(-2%, -1%, 0); } }
   @keyframes marquee { to { transform: translateX(-50%); } }
-  @keyframes settle { to { transform: scale(0.93); } }
-  @keyframes closer { from { transform: scale(1.3); } to { transform: scale(1.45); } }
-  @media (prefers-reduced-motion: reduce) {
-    .strip { width: auto; overflow-x: auto; }
+
+  /* telefone */
+  @media (max-width: 900px) {
+    .hero { grid-template-columns: 1fr; min-height: 0; padding-top: 6.5rem; }
+    .portrait { max-width: 26rem; }
+    .planner-card, .slip-card, .car-photo, .car-info { grid-column: 1 / -1; }
+    .routes { grid-template-columns: 1fr; }
+    .routes .intro-col { position: static; }
+    .book { grid-template-columns: 1fr; }
+    .island .pill.wide { display: none; }
+  }
+  @media (max-width: 480px) {
+    .island .who span { display: none; }
+    .display { font-size: clamp(2.6rem, 12vw, 3.25rem); }
+    .actions .btn { width: 100%; justify-content: space-between; }
+    .actions .btn-ghost { justify-content: center; }
   }
 </style>
 </head>
 
 <body>
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+<div class="ambient" aria-hidden="true"><img src="assets/sp-280-rodovia-castello-branco-panoramio.jpg" alt=""></div>
+<div class="grain" aria-hidden="true"></div>
 
-<div class="split">
-  <!-- Metade que não se move: o Osvair, e o lugar de cada trecho -->
-  <figure class="stage" aria-label="Fotografias">
-    <img class="portrait is-on" data-stage="portrait" src="assets/osvair.jpg" width="896" height="840" alt="Osvair dos Santos, de terno cinza e gravata azul">
-    <img data-stage="GRU" src="assets/aeroporto-de-guarulhos-em-julho-de-2026.jpg" width="1600" height="1110" alt="Aviões no pátio do Aeroporto de Guarulhos" loading="lazy">
-    <img data-stage="VCP" src="assets/fachada-do-aeroporto-internacional-de-viracopos-18.jpg" width="1600" height="1200" alt="Fachada do Aeroporto Internacional de Viracopos" loading="lazy">
-    <img data-stage="CGH" src="assets/embarque-em-aviao-no-aeroporto-de-congonhas.jpg" width="1600" height="1200" alt="Pátio de embarque do Aeroporto de Congonhas" loading="lazy">
-    <img data-stage="road" src="assets/sp-280-rodovia-castello-branco-panoramio.jpg" width="1600" height="900" alt="Pôr do sol sobre a Rodovia Castello Branco, SP-280" loading="lazy">
-    <figcaption data-caption="GRU">Aeroporto de Guarulhos (GRU)</figcaption>
-    <figcaption data-caption="VCP">Aeroporto de Viracopos (VCP)</figcaption>
-    <figcaption data-caption="CGH">Aeroporto de Congonhas (CGH)</figcaption>
-    <figcaption data-caption="road">Rodovia Castello Branco, SP-280</figcaption>
-  </figure>
+<nav class="island" aria-label="Principal">
+  <a class="who" href="#topo"><img src="assets/osvair.jpg" alt=""><span>Osvair dos Santos</span></a>
+  <a class="pill wide" href="#embarque">Embarque</a>
+  <a class="pill wide" href="#rotas">Rotas</a>
+  <a class="pill wide" href="#carro">O carro</a>
+  <a class="pill wide" href="#contato">Contato</a>
+  <a class="pill cta" href="https://wa.me/5515988164662?text=Ol%C3%A1%2C%20Osvair!%20Gostaria%20de%20agendar%20uma%20corrida." target="_blank" rel="noopener">WhatsApp</a>
+</nav>
 
-  <div class="col">
-    <header class="hero" data-section="portrait">
-      <nav class="nav" aria-label="Principal">
-        <a class="menu-word" href="#menu">Menu</a>
+<div class="wrap" id="topo">
+  <!-- Hero -->
+  <header class="hero">
+    <div>
+      <p class="eyebrow" data-reveal>Motorista executivo em Sorocaba</p>
+      <h1 class="display" data-reveal style="--i:1">Do seu endereço <span>ao portão de embarque.</span></h1>
+      <p class="lede" data-reveal style="--i:2">Osvair dos Santos leva você a Guarulhos, Viracopos e Congonhas num Toyota Corolla híbrido, com o horário de busca calculado a partir do seu voo.</p>
+      <div class="actions" data-reveal style="--i:3">
+        <a class="btn" href="https://wa.me/5515988164662?text=Ol%C3%A1%2C%20Osvair!%20Gostaria%20de%20agendar%20uma%20corrida." target="_blank" rel="noopener">Chamar no WhatsApp<span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+        <a class="btn btn-ghost" href="https://agenda.osvairsantos.com.br" target="_blank" rel="noopener">Agendar online</a>
+      </div>
+    </div>
+    <figure class="shell portrait" data-reveal style="--i:2">
+      <div class="core">
+        <img src="assets/osvair.jpg" width="896" height="840" alt="Osvair dos Santos, de terno cinza e gravata azul">
+      </div>
+      <figcaption class="tag">
+        <div><strong>Osvair dos Santos</strong><span>Corolla Altis HV Hybrid 2023</span></div>
+        <div class="years">20+<small>anos na estrada</small></div>
+      </figcaption>
+    </figure>
+  </header>
+
+  <main id="conteudo">
+    <!-- Embarque -->
+    <section id="embarque" aria-labelledby="embarque-titulo">
+      <p class="eyebrow" data-reveal>Roteiro</p>
+      <h2 class="h2" id="embarque-titulo" data-reveal style="--i:1">Seu voo marca <span>a hora da busca.</span></h2>
+      <p class="lede" data-reveal style="--i:2">Diga o aeroporto e o horário do voo. Osvair conta de trás para frente: a antecedência do check-in, o trecho de estrada e meia hora de folga para o trânsito.</p>
+
+      <div class="bento">
+        <div class="shell planner-card" data-reveal>
+          <form class="core pad planner" id="planner" onsubmit="return false">
+            <fieldset>
+              <legend>Aeroporto</legend>
+              <div class="seg">
+                <input type="radio" name="ap" id="ap-gru" value="GRU" checked><label for="ap-gru">Guarulhos</label>
+                <input type="radio" name="ap" id="ap-vcp" value="VCP"><label for="ap-vcp">Viracopos</label>
+                <input type="radio" name="ap" id="ap-cgh" value="CGH"><label for="ap-cgh">Congonhas</label>
+              </div>
+            </fieldset>
+            <fieldset>
+              <legend>Voo</legend>
+              <div class="seg">
+                <input type="radio" name="kind" id="k-nac" value="nac" checked><label for="k-nac">Nacional</label>
+                <input type="radio" name="kind" id="k-int" value="int"><label for="k-int">Internacional</label>
+              </div>
+            </fieldset>
+            <div>
+              <label class="lbl" for="flight-time">Horário do voo</label>
+              <input class="time-field" type="time" id="flight-time" value="10:40" step="300">
+            </div>
+          </form>
+        </div>
+
+        <div class="shell slip-card" data-reveal style="--i:1">
+          <div class="core">
+            <div class="airport">
+              <img class="is-on" data-airport="GRU" src="assets/aeroporto-de-guarulhos-em-julho-de-2026.jpg" width="1600" height="1110" alt="Aviões no pátio do Aeroporto de Guarulhos" loading="lazy">
+              <img data-airport="VCP" src="assets/fachada-do-aeroporto-internacional-de-viracopos-18.jpg" width="1600" height="1200" alt="Fachada do Aeroporto Internacional de Viracopos" loading="lazy">
+              <img data-airport="CGH" src="assets/embarque-em-aviao-no-aeroporto-de-congonhas.jpg" width="1600" height="1200" alt="Pátio de embarque do Aeroporto de Congonhas" loading="lazy">
+              <p data-out="airport-name">Aeroporto de Guarulhos (GRU)</p>
+            </div>
+            <div class="slip" id="slip" aria-live="polite">
+              <h3>Em Sorocaba</h3>
+              <ul>
+                <li><span>Busca no seu endereço</span><span class="dots"></span><span class="val" data-out="pickup">06:10</span></li>
+                <li><span>Folga para o trânsito</span><span class="dots"></span><span class="val">30 min</span></li>
+              </ul>
+              <h3>Na estrada</h3>
+              <ul>
+                <li><span data-out="route">Castello Branco, Rodoanel e Ayrton Senna</span><span class="dots"></span><span class="val" data-out="drive">2 h</span></li>
+              </ul>
+              <h3>No aeroporto</h3>
+              <ul>
+                <li><span data-out="arrive-label">Chegada a Guarulhos</span><span class="dots"></span><span class="val" data-out="arrive">08:40</span></li>
+                <li><span data-out="lead-label">Antecedência, voo nacional</span><span class="dots"></span><span class="val" data-out="lead">2 h</span></li>
+              </ul>
+              <div class="total">
+                <div><p class="small">Horário de busca</p><p class="big" data-out="total-time">06:10</p></div>
+                <p class="small" data-out="total">para o voo das 10:40</p>
+              </div>
+              <p class="slip-note">Tempos de estrada estimados a partir de Sorocaba. Osvair confirma o horário com você antes da viagem.</p>
+              <a class="btn" id="slip-send" href="https://wa.me/5515988164662?text=Ol%C3%A1%2C%20Osvair!%20Tenho%20um%20voo%20e%20gostaria%20de%20agendar%20o%20transfer." target="_blank" rel="noopener">Enviar este roteiro<span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Rotas -->
+    <section id="rotas" aria-labelledby="rotas-titulo">
+      <div class="routes">
+        <div class="intro-col">
+          <p class="eyebrow" data-reveal>Serviços</p>
+          <h2 class="h2" id="rotas-titulo" data-reveal style="--i:1">Para onde <span>ele te leva.</span></h2>
+          <p class="lede" data-reveal style="--i:2">Aeroportos, compromissos de trabalho, eventos e viagens entre cidades, sempre com hora marcada e sem divisão de corrida.</p>
+        </div>
+        <div>
+          <div class="bars">
+            <details open data-reveal>
+              <summary>Aeroportos <span class="plus" aria-hidden="true">+</span></summary>
+              <dl>
+                <div><dt>Guarulhos (GRU)</dt><dd>cerca de 2 h</dd></div>
+                <div><dt>Congonhas (CGH)</dt><dd>cerca de 1 h 40</dd></div>
+                <div><dt>Viracopos (VCP)</dt><dd>cerca de 1 h 10</dd></div>
+              </dl>
+            </details>
+            <details data-reveal style="--i:1">
+              <summary>Transporte corporativo <span class="plus" aria-hidden="true">+</span></summary>
+              <dl>
+                <div><dt>Reuniões e compromissos</dt><dd>ida e volta</dd></div>
+                <div><dt>Deslocamentos executivos</dt><dd>com discrição</dd></div>
+              </dl>
+            </details>
+            <details data-reveal style="--i:2">
+              <summary>Eventos <span class="plus" aria-hidden="true">+</span></summary>
+              <dl>
+                <div><dt>Casamentos</dt><dd>trajeto combinado</dd></div>
+                <div><dt>Formaturas</dt><dd>trajeto combinado</dd></div>
+                <div><dt>Compromissos sociais</dt><dd>horário combinado</dd></div>
+              </dl>
+            </details>
+            <details data-reveal style="--i:3">
+              <summary>Viagens intermunicipais <span class="plus" aria-hidden="true">+</span></summary>
+              <dl>
+                <div><dt>Sorocaba e região</dt><dd>data e hora fixas</dd></div>
+                <div><dt>Capital paulista</dt><dd>data e hora fixas</dd></div>
+                <div><dt>Demais cidades do estado</dt><dd>sob consulta</dd></div>
+              </dl>
+            </details>
+            <details data-reveal style="--i:4">
+              <summary>Pagamento <span class="plus" aria-hidden="true">+</span></summary>
+              <dl>
+                <div><dt>Pix</dt><dd>chave no fechamento</dd></div>
+                <div><dt>Cartão de crédito</dt><dd>aceito</dd></div>
+                <div><dt>Cartão de débito</dt><dd>aceito</dd></div>
+              </dl>
+            </details>
+          </div>
+          <p class="routes-note">Tempos de estrada a partir de Sorocaba, sem trânsito pesado.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- O carro -->
+    <section id="carro" aria-labelledby="carro-titulo">
+      <p class="eyebrow" data-reveal>O carro</p>
+      <h2 class="h2" id="carro-titulo" data-reveal style="--i:1">Silencioso desde <span>a partida.</span></h2>
+      <div class="bento">
+        <figure class="shell car-photo" data-reveal>
+          <div class="core">
+            <img src="assets/toyota-corolla-sedan-e210-hydrid.jpg" width="1600" height="1090" alt="Toyota Corolla sedã híbrido preto, da mesma geração do carro do Osvair, estacionado" loading="lazy">
+            <figcaption>Corolla sedã híbrido da mesma geração. Foto ilustrativa do modelo, não do carro do Osvair.</figcaption>
+          </div>
+        </figure>
+        <div class="shell car-info" data-reveal style="--i:1">
+          <div class="core pad">
+            <div class="tabs" role="tablist" aria-label="Sobre o carro">
+              <button role="tab" id="tab-ficha" aria-controls="p-ficha" aria-selected="true">Ficha</button>
+              <button role="tab" id="tab-bordo" aria-controls="p-bordo" aria-selected="false" tabindex="-1">A bordo</button>
+              <button role="tab" id="tab-hibrido" aria-controls="p-hibrido" aria-selected="false" tabindex="-1">Híbrido</button>
+            </div>
+            <h3>Toyota Corolla Altis <span>HV Hybrid 2023</span></h3>
+            <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="tab-ficha">
+              <p>Sedã executivo, silencioso e macio mesmo em longos trechos de rodovia, com espaço pensado para viagens de negócios.</p>
+              <ul>
+                <li>Câmbio automático e-CVT</li>
+                <li>Ar-condicionado digital de duas zonas</li>
+                <li>Porta-malas de 470 litros</li>
+              </ul>
+            </div>
+            <div class="panel" id="p-bordo" role="tabpanel" aria-labelledby="tab-bordo" hidden>
+              <p>O carro é higienizado a cada corrida e preparado antes de você entrar.</p>
+              <ul>
+                <li>Água a bordo</li>
+                <li>Carregadores de celular</li>
+                <li>Bancos confortáveis para trechos longos</li>
+              </ul>
+            </div>
+            <div class="panel" id="p-hibrido" role="tabpanel" aria-labelledby="tab-hibrido" hidden>
+              <p>Sai em modo elétrico, sem ruído de motor. Na estrada, o motor a combustão entra com suavidade e o sistema alterna sozinho entre os dois.</p>
+              <ul>
+                <li>Partida e manobras em silêncio</li>
+                <li>Menos consumo e menos emissão</li>
+              </ul>
+            </div>
+            <a class="btn" href="https://agenda.osvairsantos.com.br" target="_blank" rel="noopener">Agendar online<span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Carta do Osvair -->
+    <section id="osvair" aria-label="Carta de Osvair dos Santos">
+      <div class="shell letter" data-reveal>
+        <div class="core pad">
+          <div class="who-row">
+            <img src="assets/osvair.jpg" width="56" height="56" alt="" loading="lazy">
+            <div><strong>Osvair dos Santos</strong><span>Motorista executivo, Sorocaba</span></div>
+          </div>
+          <div class="body">
+            <p>Tenho 43 anos e passei mais de vinte deles na estrada. Aprendi que a viagem começa antes de o carro sair: começa quando eu olho o horário do seu compromisso.</p>
+            <p>Por isso planejo cada trajeto com antecedência. Conheço a Castello Branco, a Raposo e o caminho de cada aeroporto, e conto com o trânsito antes que ele conte com a gente.</p>
+            <p>Atendo um passageiro por vez. Não divido corrida e não tenho pressa. <span class="mark">Do primeiro contato até o desembarque, quem cuida de você sou eu.</span></p>
+            <p>Três coisas eu não negocio: pontualidade, direção segura e discrição. O resto a gente combina.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Contato -->
+    <section class="contact" id="contato" aria-labelledby="contato-titulo">
+      <div class="shell" data-reveal>
+        <div class="core">
+          <div class="strip-wrap" aria-hidden="true">
+            <div class="strip">
+              <img src="assets/sp-280-rodovia-castello-branco-panoramio-sm.jpg" alt="" loading="lazy">
+              <img src="assets/fachada-do-aeroporto-internacional-de-viracopos-18-sm.jpg" alt="" loading="lazy">
+              <img src="assets/rod-raposo-tavares-km-76-aluminio-sp-sm.jpg" alt="" loading="lazy">
+              <img src="assets/aeroporto-de-guarulhos-em-julho-de-2026-sm.jpg" alt="" loading="lazy">
+              <img src="assets/rio-sorocaba-cropped-sm.jpg" alt="" loading="lazy">
+              <img src="assets/mapa-rodovia-castelo-branco-sm.jpg" alt="" loading="lazy">
+              <img src="assets/embarque-em-aviao-no-aeroporto-de-congonhas-sm.jpg" alt="" loading="lazy">
+              <img src="assets/toyota-corolla-sedan-e210-hydrid-sm.jpg" alt="" loading="lazy">
+              <img src="assets/sp-280-rodovia-castello-branco-panoramio-sm.jpg" alt="" loading="lazy">
+              <img src="assets/fachada-do-aeroporto-internacional-de-viracopos-18-sm.jpg" alt="" loading="lazy">
+              <img src="assets/rod-raposo-tavares-km-76-aluminio-sp-sm.jpg" alt="" loading="lazy">
+              <img src="assets/aeroporto-de-guarulhos-em-julho-de-2026-sm.jpg" alt="" loading="lazy">
+              <img src="assets/rio-sorocaba-cropped-sm.jpg" alt="" loading="lazy">
+              <img src="assets/mapa-rodovia-castelo-branco-sm.jpg" alt="" loading="lazy">
+              <img src="assets/embarque-em-aviao-no-aeroporto-de-congonhas-sm.jpg" alt="" loading="lazy">
+              <img src="assets/toyota-corolla-sedan-e210-hydrid-sm.jpg" alt="" loading="lazy">
+            </div>
+          </div>
+          <div class="pad">
+            <h2 class="h2" id="contato-titulo">Reserve <span>seu embarque.</span></h2>
+            <p class="lede">Atende Sorocaba e região, com trajetos para a capital e as demais cidades do estado. Mande o destino e o horário que Osvair responde pelo WhatsApp.</p>
+            <form class="book" id="book" action="https://wa.me/5515988164662" method="get" target="_blank">
+              <label class="sr-only" for="b-name">Seu nome</label>
+              <input id="b-name" type="text" placeholder="Seu nome" autocomplete="name">
+              <label class="sr-only" for="b-trip">Destino, dia e horário</label>
+              <input id="b-trip" name="text" type="text" placeholder="Destino, dia e horário">
+              <button class="btn" type="submit">Chamar no WhatsApp<span class="arrow" aria-hidden="true"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></span></button>
+            </form>
+            <div class="book-notes">
+              <p>Prefere ligar? <a href="tel:+5515988164662">(15) 98816-4662</a></p>
+              <p>E-mail: <a href="mailto:osvairsantos27@gmail.com">osvairsantos27@gmail.com</a></p>
+              <p>Ou use a <a href="https://agenda.osvairsantos.com.br" target="_blank" rel="noopener">agenda online</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="foot-top">
+      <p class="foot-name">Osvair dos Santos</p>
+      <nav class="foot-links" aria-label="Rodapé">
         <a href="#embarque">Embarque</a>
         <a href="#rotas">Rotas</a>
-        <a href="#osvair">Osvair</a>
         <a href="#carro">O carro</a>
-        <a class="button" href="https://wa.me/5515988164662?text=Ol%C3%A1%2C%20Osvair!%20Gostaria%20de%20agendar%20uma%20corrida." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+        <a href="#osvair">Osvair</a>
+        <a href="#contato">Contato</a>
       </nav>
-
-      <div class="hero-text">
-        <p class="lead" data-rise>Osvair dos Santos, motorista executivo em Sorocaba, com hora marcada até Guarulhos, Viracopos e Congonhas.</p>
-        <div class="hero-actions" data-rise style="--i:1">
-          <a class="link" href="https://agenda.osvairsantos.com.br" target="_blank" rel="noopener">Prefere escolher a data sozinho? Use a agenda online</a>
-        </div>
-      </div>
-
-      <h1 class="wordmark" aria-label="Osvair dos Santos"><span aria-hidden="true">Osvair</span><span class="wm-paper" aria-hidden="true">Osvair</span></h1>
-    </header>
-
-    <main>
-      <!-- Embarque: o roteiro calculado a partir do voo -->
-      <section class="leg pad" id="embarque" data-section="airport" aria-labelledby="embarque-titulo">
-        <div class="leg-intro">
-          <h2 class="head" id="embarque-titulo" data-reveal>Seu voo marca a hora</h2>
-          <p data-reveal style="--i:1">Diga o aeroporto e o horário do voo. Osvair conta de trás para frente: a antecedência do check-in, o trecho de estrada e meia hora de folga para o trânsito.</p>
-        </div>
-
-        <form class="planner" id="planner" data-reveal style="--i:2" onsubmit="return false">
-          <fieldset>
-            <legend>Aeroporto</legend>
-            <div class="seg">
-              <input type="radio" name="ap" id="ap-gru" value="GRU" checked><label for="ap-gru">Guarulhos</label>
-              <input type="radio" name="ap" id="ap-vcp" value="VCP"><label for="ap-vcp">Viracopos</label>
-              <input type="radio" name="ap" id="ap-cgh" value="CGH"><label for="ap-cgh">Congonhas</label>
-            </div>
-          </fieldset>
-          <fieldset>
-            <legend>Voo</legend>
-            <div class="seg">
-              <input type="radio" name="kind" id="k-nac" value="nac" checked><label for="k-nac">Nacional</label>
-              <input type="radio" name="kind" id="k-int" value="int"><label for="k-int">Internacional</label>
-            </div>
-          </fieldset>
-          <div>
-            <label class="small" for="flight-time">Horário do voo</label>
-            <input class="time-field" type="time" id="flight-time" value="10:40" step="300" style="margin-top:0.5rem">
-          </div>
-        </form>
-
-        <div class="slip" id="slip" aria-live="polite" data-reveal style="--i:3">
-          <h3>Em Sorocaba</h3>
-          <ul>
-            <li><span class="what">Busca no seu endereço</span><span class="dots"></span><span class="val" data-out="pickup">06:10</span></li>
-            <li><span class="what">Folga para o trânsito</span><span class="dots"></span><span class="val">30 min</span></li>
-          </ul>
-          <h3>Na estrada</h3>
-          <ul>
-            <li><span class="what" data-out="route">Castello Branco, Rodoanel e Ayrton Senna</span><span class="dots"></span><span class="val" data-out="drive">2 h</span></li>
-          </ul>
-          <h3>No aeroporto</h3>
-          <ul>
-            <li><span class="what" data-out="arrive-label">Chegada a Guarulhos</span><span class="dots"></span><span class="val" data-out="arrive">08:40</span></li>
-            <li><span class="what" data-out="lead-label">Antecedência, voo nacional</span><span class="dots"></span><span class="val" data-out="lead">2 h</span></li>
-          </ul>
-          <p class="total" data-out="total">Busca às 06:10 para o voo das 10:40</p>
-        </div>
-        <p class="slip-note">Tempos de estrada estimados a partir de Sorocaba. Osvair confirma o horário com você antes da viagem.</p>
-        <a class="button" id="slip-send" href="https://wa.me/5515988164662?text=Ol%C3%A1%2C%20Osvair!%20Tenho%20um%20voo%20e%20gostaria%20de%20agendar%20o%20transfer." target="_blank" rel="noopener">Chamar no WhatsApp</a>
-      </section>
-
-      <!-- Rotas: o que ele faz, inteiro -->
-      <section class="routes pad" id="rotas" data-section="road" aria-labelledby="rotas-titulo">
-        <h2 class="giant" id="rotas-titulo" data-reveal>Rotas</h2>
-        <div class="bars">
-          <details open data-reveal style="--i:1">
-            <summary>Aeroportos <span class="plus" aria-hidden="true">+</span></summary>
-            <dl>
-              <div><dt>Guarulhos (GRU)</dt><dd>cerca de 2 h</dd></div>
-              <div><dt>Congonhas (CGH)</dt><dd>cerca de 1 h 40</dd></div>
-              <div><dt>Viracopos (VCP)</dt><dd>cerca de 1 h 10</dd></div>
-              <div><dt>Margem de horário calculada para cada voo</dt><dd></dd></div>
-            </dl>
-          </details>
-          <details data-reveal style="--i:2">
-            <summary>Transporte corporativo <span class="plus" aria-hidden="true">+</span></summary>
-            <dl>
-              <div><dt>Reuniões e compromissos</dt><dd>ida e volta</dd></div>
-              <div><dt>Deslocamentos executivos</dt><dd>com discrição</dd></div>
-            </dl>
-          </details>
-          <details data-reveal style="--i:3">
-            <summary>Eventos <span class="plus" aria-hidden="true">+</span></summary>
-            <dl>
-              <div><dt>Casamentos</dt><dd>trajeto combinado</dd></div>
-              <div><dt>Formaturas</dt><dd>trajeto combinado</dd></div>
-              <div><dt>Compromissos sociais</dt><dd>horário combinado</dd></div>
-            </dl>
-          </details>
-          <details data-reveal style="--i:4">
-            <summary>Viagens intermunicipais <span class="plus" aria-hidden="true">+</span></summary>
-            <dl>
-              <div><dt>Sorocaba e região</dt><dd>data e hora fixas</dd></div>
-              <div><dt>Capital paulista</dt><dd>data e hora fixas</dd></div>
-              <div><dt>Demais cidades do estado</dt><dd>sob consulta</dd></div>
-            </dl>
-          </details>
-          <details data-reveal style="--i:5">
-            <summary>Pagamento <span class="plus" aria-hidden="true">+</span></summary>
-            <dl>
-              <div><dt>Pix</dt><dd>chave no fechamento</dd></div>
-              <div><dt>Cartão de crédito</dt><dd>aceito</dd></div>
-              <div><dt>Cartão de débito</dt><dd>aceito</dd></div>
-            </dl>
-          </details>
-        </div>
-        <p class="routes-note muted">Tempos de estrada a partir de Sorocaba, sem trânsito pesado.</p>
-      </section>
-
-      <!-- Carta do Osvair -->
-      <section class="letter pad" id="osvair" data-section="portrait" aria-label="Carta de Osvair dos Santos">
-        <div class="letter-inner">
-          <img src="assets/osvair.jpg" width="44" height="44" alt="" loading="lazy" data-reveal>
-          <div class="body">
-            <p data-reveal style="--i:1">Tenho 43 anos e passei mais de vinte deles na estrada. Aprendi que a viagem começa antes de o carro sair: começa quando eu olho o horário do seu compromisso.</p>
-            <p data-reveal style="--i:2">Por isso planejo cada trajeto com antecedência. Conheço a Castello Branco, a Raposo e o caminho de cada aeroporto, e conto com o trânsito antes que ele conte com a gente.</p>
-            <p data-reveal style="--i:3">Atendo um passageiro por vez. Não divido corrida e não tenho pressa. <span class="mark">Do primeiro contato até o desembarque, quem cuida de você sou eu.</span></p>
-            <p data-reveal style="--i:4">Três coisas eu não negocio: pontualidade, direção segura e discrição. O resto a gente combina.</p>
-          </div>
-          <div class="sign" data-reveal style="--i:5">
-            <p class="name">Osvair dos Santos</p>
-            <p class="role small muted">Motorista executivo, Sorocaba</p>
-          </div>
-        </div>
-      </section>
-    </main>
-  </div>
+    </div>
+    <p>© 2026 Osvair dos Santos. Pix, cartão de crédito e débito.</p>
+    <p class="credits">Fotos de lugares e do modelo do carro: <a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla_sedan_E210_hydrid.jpg">“Toyota Corolla sedan E210 hydrid”</a> por Mateusmatsuda, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:SP-280-RODOVIA_CASTELLO_BRANCO_-_panoramio.jpg">“SP-280-Rodovia Castello Branco”</a> por James Martins, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Mapa-rodovia-castelo-branco.jpg">“Mapa-rodovia-castelo-branco”</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rod._Raposo_Tavares,_km_76_-_Alum%C3%ADnio_SP_(5224994086).jpg">“Rod. Raposo Tavares, km 76, Alumínio SP”</a> por Roberto Sabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Aeroporto_de_Guarulhos_em_Julho_de_2026.jpg">“Aeroporto de Guarulhos em Julho de 2026”</a> por Boaventuravinicius, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Fachada_do_Aeroporto_Internacional_de_Viracopos.18.6.2025.jpg">“Fachada do Aeroporto Internacional de Viracopos”</a> por Mtvdanilo, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Embarque_em_avi%C3%A3o_no_Aeroporto_de_Congonhas,_S%C3%A3o_Paulo,_novembro_de_2024_(1).jpg">“Embarque em avião no Aeroporto de Congonhas”</a> por Fronteira, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rio_Sorocaba_(cropped).jpg">“Rio Sorocaba”</a> por RobSabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>. Todas via Wikimedia Commons.</p>
+  </footer>
 </div>
 
-<!-- O carro: a página sai do palco dividido -->
-<section class="car" id="carro" aria-labelledby="carro-titulo">
-  <figure class="car-photo" data-reveal>
-    <div class="frame">
-      <img src="assets/toyota-corolla-sedan-e210-hydrid.jpg" width="1600" height="1090" alt="Toyota Corolla sedã híbrido preto, da mesma geração do carro do Osvair, estacionado" loading="lazy">
-    </div>
-    <figcaption>Corolla sedã híbrido da mesma geração. Foto ilustrativa do modelo, não do carro do Osvair.</figcaption>
-  </figure>
-  <div class="car-text">
-    <div class="tabs" role="tablist" aria-label="Sobre o carro" data-reveal style="--i:1">
-      <button role="tab" id="tab-ficha" aria-controls="p-ficha" aria-selected="true">Ficha</button>
-      <button role="tab" id="tab-bordo" aria-controls="p-bordo" aria-selected="false" tabindex="-1">A bordo</button>
-      <button role="tab" id="tab-hibrido" aria-controls="p-hibrido" aria-selected="false" tabindex="-1">Híbrido</button>
-    </div>
-    <div data-reveal style="--i:2">
-      <h2 class="head" id="carro-titulo"><span>Corolla Altis</span> <span>HV Hybrid 2023</span></h2>
-      <div class="panel" id="p-ficha" role="tabpanel" aria-labelledby="tab-ficha">
-        <p>Sedã executivo, silencioso e macio mesmo em longos trechos de rodovia, com espaço pensado para viagens de negócios.</p>
-        <ul>
-          <li>Câmbio automático e-CVT</li>
-          <li>Ar-condicionado digital de duas zonas</li>
-          <li>Porta-malas de 470 litros, para bagagem de viagem</li>
-        </ul>
-      </div>
-      <div class="panel" id="p-bordo" role="tabpanel" aria-labelledby="tab-bordo" hidden>
-        <p>O carro é higienizado a cada corrida e preparado antes de você entrar.</p>
-        <ul>
-          <li>Água a bordo</li>
-          <li>Carregadores de celular</li>
-          <li>Bancos confortáveis para trechos longos</li>
-        </ul>
-      </div>
-      <div class="panel" id="p-hibrido" role="tabpanel" aria-labelledby="tab-hibrido" hidden>
-        <p>Sai em modo elétrico, sem ruído de motor. Na estrada, o motor a combustão entra com suavidade e o sistema alterna sozinho entre os dois.</p>
-        <ul>
-          <li>Partida e manobras em silêncio</li>
-          <li>Menos consumo e menos emissão</li>
-        </ul>
-      </div>
-    </div>
-    <div class="cells" data-reveal style="--i:3">
-      <a class="ink" href="https://wa.me/5515988164662?text=Ol%C3%A1%2C%20Osvair!%20Gostaria%20de%20agendar%20uma%20corrida." target="_blank" rel="noopener">Chamar no WhatsApp</a>
-      <a class="tone" href="https://agenda.osvairsantos.com.br" target="_blank" rel="noopener">Agenda online</a>
-    </div>
-  </div>
-</section>
-
-<!-- Contato -->
-<section class="contact" id="contato" aria-labelledby="contato-titulo">
-  <div class="strip" aria-hidden="true">
-    <img class="r32" src="assets/sp-280-rodovia-castello-branco-panoramio-sm.jpg" alt="" loading="lazy">
-    <img class="r34" src="assets/fachada-do-aeroporto-internacional-de-viracopos-18-sm.jpg" alt="" loading="lazy">
-    <img class="r11" src="assets/rod-raposo-tavares-km-76-aluminio-sp-sm.jpg" alt="" loading="lazy">
-    <img class="r32" src="assets/aeroporto-de-guarulhos-em-julho-de-2026-sm.jpg" alt="" loading="lazy">
-    <img class="r34" src="assets/rio-sorocaba-cropped-sm.jpg" alt="" loading="lazy">
-    <img class="r11" src="assets/mapa-rodovia-castelo-branco-sm.jpg" alt="" loading="lazy">
-    <img class="r32" src="assets/embarque-em-aviao-no-aeroporto-de-congonhas-sm.jpg" alt="" loading="lazy">
-    <img class="r34" src="assets/toyota-corolla-sedan-e210-hydrid-sm.jpg" alt="" loading="lazy">
-    <img class="r32" src="assets/sp-280-rodovia-castello-branco-panoramio-sm.jpg" alt="" loading="lazy">
-    <img class="r34" src="assets/fachada-do-aeroporto-internacional-de-viracopos-18-sm.jpg" alt="" loading="lazy">
-    <img class="r11" src="assets/rod-raposo-tavares-km-76-aluminio-sp-sm.jpg" alt="" loading="lazy">
-    <img class="r32" src="assets/aeroporto-de-guarulhos-em-julho-de-2026-sm.jpg" alt="" loading="lazy">
-    <img class="r34" src="assets/rio-sorocaba-cropped-sm.jpg" alt="" loading="lazy">
-    <img class="r11" src="assets/mapa-rodovia-castelo-branco-sm.jpg" alt="" loading="lazy">
-    <img class="r32" src="assets/embarque-em-aviao-no-aeroporto-de-congonhas-sm.jpg" alt="" loading="lazy">
-    <img class="r34" src="assets/toyota-corolla-sedan-e210-hydrid-sm.jpg" alt="" loading="lazy">
-  </div>
-
-  <div class="contact-body">
-    <h2 class="head" id="contato-titulo" data-reveal>Reserve seu embarque</h2>
-    <p class="contact-sub" data-reveal style="--i:1">Atende Sorocaba e região, com trajetos para a capital e as demais cidades do estado. Mande o destino e o horário que Osvair responde pelo WhatsApp.</p>
-
-    <form class="book" id="book" action="https://wa.me/5515988164662" method="get" target="_blank" data-reveal style="--i:2">
-      <label class="sr-only" for="b-name">Seu nome</label>
-      <input id="b-name" type="text" placeholder="Seu nome" autocomplete="name">
-      <label class="sr-only" for="b-trip">Destino, dia e horário</label>
-      <input id="b-trip" name="text" type="text" placeholder="Destino, dia e horário">
-      <button type="submit">Chamar no WhatsApp</button>
-    </form>
-    <div class="book-notes">
-      <p>Prefere ligar? <a href="tel:+5515988164662">(15) 98816-4662</a></p>
-      <p>Ou use a <a href="https://agenda.osvairsantos.com.br" target="_blank" rel="noopener">agenda online</a></p>
-    </div>
-  </div>
-</section>
-
-<!-- Rodapé -->
-<footer class="foot" id="menu">
-  <div class="foot-photo">
-    <img src="assets/osvair.jpg" width="896" height="840" alt="Osvair dos Santos" loading="lazy">
-  </div>
-  <div class="foot-side">
-    <p class="brand">Osvair dos Santos, transporte executivo</p>
-    <nav class="foot-menu" aria-label="Rodapé">
-      <a href="#embarque">Embarque</a>
-      <a href="#rotas">Rotas</a>
-      <a href="#osvair">Osvair</a>
-      <a href="#carro">O carro</a>
-      <a href="#contato">Contato</a>
-    </nav>
-    <div class="foot-info">
-      <div>
-        <h2>Contato</h2>
-        <a class="link" href="https://wa.me/5515988164662" target="_blank" rel="noopener">WhatsApp (15) 98816-4662</a>
-        <a class="link" href="mailto:osvairsantos27@gmail.com">osvairsantos27@gmail.com</a>
-        <a class="link" href="https://agenda.osvairsantos.com.br" target="_blank" rel="noopener">Agenda online</a>
-      </div>
-      <div>
-        <h2>Pagamento</h2>
-        <p>Pix, cartão de crédito e cartão de débito. A chave Pix é combinada no fechamento da corrida.</p>
-      </div>
-    </div>
-    <div class="legal">
-      <p>© 2026 Osvair dos Santos</p>
-      <p class="credits">Fotos de lugares e do modelo do carro: <a href="https://commons.wikimedia.org/wiki/File:Toyota_Corolla_sedan_E210_hydrid.jpg">“Toyota Corolla sedan E210 hydrid”</a> por Mateusmatsuda, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:SP-280-RODOVIA_CASTELLO_BRANCO_-_panoramio.jpg">“SP-280-Rodovia Castello Branco”</a> por James Martins, <a href="https://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Mapa-rodovia-castelo-branco.jpg">“Mapa-rodovia-castelo-branco”</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rod._Raposo_Tavares,_km_76_-_Alum%C3%ADnio_SP_(5224994086).jpg">“Rod. Raposo Tavares, km 76, Alumínio SP”</a> por Roberto Sabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Aeroporto_de_Guarulhos_em_Julho_de_2026.jpg">“Aeroporto de Guarulhos em Julho de 2026”</a> por Boaventuravinicius, <a href="https://creativecommons.org/licenses/by-sa/3.0">CC BY-SA 3.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Fachada_do_Aeroporto_Internacional_de_Viracopos.18.6.2025.jpg">“Fachada do Aeroporto Internacional de Viracopos”</a> por Mtvdanilo, <a href="https://creativecommons.org/licenses/by/4.0">CC BY 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Embarque_em_avi%C3%A3o_no_Aeroporto_de_Congonhas,_S%C3%A3o_Paulo,_novembro_de_2024_(1).jpg">“Embarque em avião no Aeroporto de Congonhas”</a> por Fronteira, <a href="https://creativecommons.org/licenses/by-sa/4.0">CC BY-SA 4.0</a>; <a href="https://commons.wikimedia.org/wiki/File:Rio_Sorocaba_(cropped).jpg">“Rio Sorocaba”</a> por RobSabino, <a href="https://creativecommons.org/licenses/by/2.0">CC BY 2.0</a>. Todas via Wikimedia Commons.</p>
-    </div>
-  </div>
-</footer>
-
 <script>
-  // Entrada única de cada parte ao aparecer; nada fica escondido se o observer falhar
+  // Entrada de cada parte ao aparecer; nada fica escondido se o observer falhar
   (() => {
     const els = document.querySelectorAll('[data-reveal]');
     if (!('IntersectionObserver' in window)) { els.forEach((el) => el.classList.add('is-in')); return; }
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }
-    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+    }, { rootMargin: '0px 0px -8% 0px', threshold: 0.08 });
     els.forEach((el) => io.observe(el));
     window.addEventListener('load', () => setTimeout(() => {
       els.forEach((el) => { const r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) el.classList.add('is-in'); });
     }, 2500));
-  })();
-
-  // Palco: a foto fixa acompanha a seção em leitura (e o aeroporto escolhido no roteiro)
-  const stage = {
-    current: 'portrait',
-    airport: 'GRU',
-    show(key) {
-      if (key === 'airport') key = this.airport;
-      this.current = key;
-      document.querySelectorAll('.stage [data-stage]').forEach((img) => img.classList.toggle('is-on', img.dataset.stage === key));
-      document.querySelectorAll('.stage [data-caption]').forEach((c) => c.classList.toggle('is-on', c.dataset.caption === key));
-    },
-  };
-  (() => {
-    if (!('IntersectionObserver' in window)) return;
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) stage.show(e.target.dataset.section);
-    }, { rootMargin: '-45% 0px -45% 0px' });
-    document.querySelectorAll('[data-section]').forEach((s) => io.observe(s));
   })();
 
   // O roteiro: horário de busca calculado a partir do voo
@@ -605,8 +546,9 @@
     const MARGIN = 30;
     const form = document.getElementById('planner');
     const slip = document.getElementById('slip');
+    const card = slip.closest('.core');
     const send = document.getElementById('slip-send');
-    const out = (k, v) => { const el = slip.querySelector(`[data-out="${k}"]`); if (el) el.textContent = v; };
+    const out = (k, v) => { const el = card.querySelector(`[data-out="${k}"]`); if (el) el.textContent = v; };
     const hm = (m) => { m = ((m % 1440) + 1440) % 1440; return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); };
     const dur = (m) => { const h = Math.floor(m / 60), r = m % 60; return r ? (h ? `${h} h ${r}` : `${r} min`) : `${h} h`; };
 
@@ -625,11 +567,12 @@
       out('arrive', hm(arrive));
       out('lead-label', `Antecedência, voo ${kind === 'nac' ? 'nacional' : 'internacional'}`);
       out('lead', dur(LEAD[kind]));
-      out('total', `Busca às ${hm(pickup)}${eve} para o voo das ${hm(flight)}`);
+      out('total-time', hm(pickup));
+      out('total', `para o voo das ${hm(flight)}${eve}`);
+      out('airport-name', `Aeroporto de ${a.name} (${ap})`);
+      card.querySelectorAll('[data-airport]').forEach((img) => img.classList.toggle('is-on', img.dataset.airport === ap));
       const msg = `Olá, Osvair! Tenho um voo ${kind === 'nac' ? 'nacional' : 'internacional'} às ${hm(flight)} saindo de ${a.name} (${ap}). Pelo site, a busca em Sorocaba seria às ${hm(pickup)}${eve}. Podemos confirmar? O dia é: `;
       send.href = 'https://wa.me/5515988164662?text=' + encodeURIComponent(msg);
-      stage.airport = ap;
-      if (['GRU', 'VCP', 'CGH'].includes(stage.current)) stage.show(ap);
     }
     form.addEventListener('input', update);
     form.addEventListener('change', update);
